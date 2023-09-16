@@ -38,7 +38,7 @@ or Cloud Identity users through domain-wide delegation"._
 Use virtualenv to configure the working environment:
 
 ```
-virtualenv -p /usr/bin/python3.10 venv
+]$ virtualenv -p /usr/bin/python3.10 venv
 created virtual environment CPython3.10.12.final.0-64 in 1748ms
   creator CPython3Posix(dest=/home/larocca/EGI-modules/APIs/OKR/2.0/venv, clear=False, no_vcs_ignore=False, global=False)
   seeder FromAppData(download=False, pip=bundle, setuptools=bundle, wheel=bundle, via=copy, app_data_dir=/home/larocca/.local/share/virtualenv)
@@ -118,5 +118,26 @@ export LOG="DEBUG"
 
 # SSL_CHECK=False, SSL check is disabled
 export SSL_CHECK="True"
+```
+
+## Install the credenatials of the Google Service Account
+
+```
+]$ mkdir $PWD/.config
+]$ cat .config/service_account.json 
+{
+  "type": "service_account",
+  "project_id": "striped-rhino-395008",
+  "private_key_id": "****************************",
+  "private_key": "-----BEGIN PRIVATE KEY-----
+  -----END PRIVATE KEY-----\n",
+  "client_email": "python-google-sheet-service-ac@striped-rhino-395008.iam.gserviceaccount.com",
+  "client_id": "***************",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/python-google-sheet-service-ac%40striped-rhino-395008.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
 ```
 
