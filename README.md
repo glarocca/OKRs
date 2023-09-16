@@ -44,7 +44,7 @@ created virtual environment CPython3.10.12.final.0-64 in 1748ms
   seeder FromAppData(download=False, pip=bundle, setuptools=bundle, wheel=bundle, via=copy, app_data_dir=/home/larocca/.local/share/virtualenv)
     added seed packages: pip==22.0.2, setuptools==59.6.0, wheel==0.37.1
   activators BashActivator,CShellActivator,FishActivator,NushellActivator,PowerShellActivator,PythonActivator
-```
+
 ]$ source venv/bin/activate
 ```
 
