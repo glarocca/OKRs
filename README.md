@@ -32,3 +32,26 @@ or Cloud Identity users through domain-wide delegation"._
 * Name the service account, then grant it a “**Project**” role with “**Editor**” access and click on “**Continue**”.
 * The credentials will be created and downloaded as a JSON file. If everything is successful, you will see a screen similar to the image below.
 * Copy the JSON file to your code directory and rename it to `credentials.json`
+
+## Configuring the environment
+
+Use virtualenv to configure the working environment:
+
+```
+virtualenv -p /usr/bin/python3.10 venv
+created virtual environment CPython3.10.12.final.0-64 in 1748ms
+  creator CPython3Posix(dest=/home/larocca/EGI-modules/APIs/OKR/2.0/venv, clear=False, no_vcs_ignore=False, global=False)
+  seeder FromAppData(download=False, pip=bundle, setuptools=bundle, wheel=bundle, via=copy, app_data_dir=/home/larocca/.local/share/virtualenv)
+    added seed packages: pip==22.0.2, setuptools==59.6.0, wheel==0.37.1
+  activators BashActivator,CShellActivator,FishActivator,NushellActivator,PowerShellActivator,PythonActivator
+```
+]$ source venv/bin/activate
+```
+
+Install the libraries `gspread` with pip3:
+
+```
+]$ pip3 install gspread
+[..]
+```
+
