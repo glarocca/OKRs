@@ -17,12 +17,12 @@ Applications use service accounts to make authorized API calls, authorized as ei
 or Cloud Identity users through domain-wide delegation"._
 
 **Instructions** to create a service account are the following:
-* Head over to <a href="https://console.developers.google.com/">Google developer console</a> and click on “Create Project”.
-* Fill in the required fields and click on “Create”. You will be redirected to the project home page once the project is created.
-* Click on “Enable API and Services”.
-* Search for Google Drive API and click on “Enable”. Do the same for the Google Sheets API.
-* Click on “Create Credentials”
-* Select “Google Drive API” as the API and “Web server” (e.g. Node.js, Tomcat, etc.) as where you will be calling the API from. Follow the image below to fill in the other options.
-* Name the service account, then grant it a “Project” role with “Editor” access and click on “Continue”.
+* Head over to <a href="https://console.developers.google.com/">Google developer console</a> and click on “**Create Project**”.
+* Fill in the required fields and click on “**Create**”. You will be redirected to the project home page once the project is created.
+* Click on “**Enable API and Services**”.
+* Search for Google Drive API and click on “**Enable**”. Do the same for the Google Sheets API.
+* Click on “**Create Credentials**”
+* Select “**Google Drive API**” as the API and “Web server” (e.g. Node.js, Tomcat, etc.) as where you will be calling the API from. Follow the image below to fill in the other options.
+* Name the service account, then grant it a “**Project**” role with “**Editor**” access and click on “**Continue**”.
 * The credentials will be created and downloaded as a JSON file. If everything is successful, you will see a screen similar to the image below.
 * Copy the JSON file to your code directory and rename it to `credentials.json`
