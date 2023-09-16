@@ -122,6 +122,8 @@ export SSL_CHECK="True"
 
 ## Install the credenatials of the Google Service Account
 
+Install the JSON file downloaded when you created a Google Service Account nd rename it as `service_account.json`
+
 ```
 ]$ mkdir $PWD/.config
 ]$ cat .config/service_account.json 
