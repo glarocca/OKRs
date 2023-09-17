@@ -33,7 +33,7 @@ Log Level = INFO
 
 ## Calculate the HTC CPU/h consumed in the specific period
 
-Edit the `openrc.sh` file and configure the `scope=cloud`
+Edit the `openrc.sh` file and configure the `scope=egi`
 
 ```
 [..]
