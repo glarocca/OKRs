@@ -21,3 +21,8 @@ export GOOGLE_VOS_WORKSHEET="VOs statistics"
 export DATE_FROM="2023/01"
 export DATE_TO="2023/06"
 ```
+
+## Calculate the number of users in the production VOs (in the specific period)
+```
+```
+
