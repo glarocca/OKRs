@@ -15,6 +15,12 @@ export ACCOUNTING_SCOPE="cloud" # for Cloud Compute
 # 'sum_elap_processors', 'mem-GByte', 'vm_num', 'sum_elap', 'cost', 'net_in', 'net_out', 'disk', 'processors'
 export ACCOUNTING_METRIC="sum_elap_processors"
 
+# Google Spreadsheet settings
+export SERVICE_ACCOUNT_PATH=${PWD}"/.config/"
+export SERVICE_ACCOUNT_FILE=${SERVICE_ACCOUNT_PATH}"service_account.json"
+export GOOGLE_SHEET_NAME="OKR_Reports"
+export GOOGLE_CLOUD_WORKSHEET="Accounting Cloud CPU/h"
+
 export DATE_FROM="2023/01"
 export DATE_TO="2023/06"
 ```
@@ -47,6 +53,12 @@ export ACCOUNTING_SCOPE="egi" # for HTC Compute
 # Available metrics (for scope=grid):
 # 'elap_processors', 'njobs', 'normcpu', 'sumcpu', 'normelap', 'normelap_processors', 'sumelap', 'cpueff'
 export ACCOUNTING_METRIC="elap_processors"
+
+# Google Spreadsheet settings
+export SERVICE_ACCOUNT_PATH=${PWD}"/.config/"
+export SERVICE_ACCOUNT_FILE=${SERVICE_ACCOUNT_PATH}"service_account.json"
+export GOOGLE_SHEET_NAME="OKR_Reports"
+export GOOGLE_HTC_WORKSHEET="Accounting HTC CPU/h"
 
 export DATE_FROM="2023/01"
 export DATE_TO="2023/06"
