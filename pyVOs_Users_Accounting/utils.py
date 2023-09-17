@@ -79,14 +79,6 @@ def get_env_settings():
 
         d = {}
         try:
-           # EGI Accounting settings 
-           d['ACCOUNTING_SERVER_URL'] = os.environ['ACCOUNTING_SERVER_URL']
-           d['ACCOUNTING_SCOPE'] = os.environ['ACCOUNTING_SCOPE']
-           d['ACCOUNTING_METRIC'] = os.environ['ACCOUNTING_METRIC']
-           d['ACCOUNTING_LOCAL_JOB_SELECTOR'] = os.environ['ACCOUNTING_LOCAL_JOB_SELECTOR']
-           d['ACCOUNTING_VO_GROUP_SELECTOR'] = os.environ['ACCOUNTING_VO_GROUP_SELECTOR']
-           d['ACCOUNTING_DATA_SELECTOR'] = os.environ['ACCOUNTING_DATA_SELECTOR']
-           
            # EGI Operations Portal settings 
            d['OPERATIONS_SERVER_URL'] = os.environ['OPERATIONS_SERVER_URL']
            d['OPERATIONS_API_KEY'] = os.environ['OPERATIONS_API_KEY']
@@ -103,17 +95,6 @@ def get_env_settings():
            d['GOOGLE_HTC_WORKSHEET'] = os.environ['GOOGLE_HTC_WORKSHEET']
            d['GOOGLE_VOS_WORKSHEET'] = os.environ['GOOGLE_VOS_WORKSHEET']
 
-           # EGI gtmhub settings 
-           d['QUANTIVE_SERVER_URL'] = os.environ['QUANTIVE_SERVER_URL']
-           d['ACCOUNT_ID'] = os.environ['ACCOUNT_ID']
-           d['TOKEN'] = os.environ['TOKEN']
-           #d['OWNER_ID'] = os.environ['OWNER_ID']
-           #d['PARENT_ID'] = os.environ['PARENT_ID']
-           #d['OWNER_CONTACT'] = os.environ['OWNER_CONTACT']
-           #d['OWNER_EMAIL'] = os.environ['OWNER_EMAIL']
-           d['TASK_ID'] = os.environ['TASK_ID']
-           d['ACTION'] = os.environ['ACTION']
-           
            # Generic settings
            d['LOG'] = os.environ['LOG']
            d['DATE_FROM'] = os.environ['DATE_FROM']
