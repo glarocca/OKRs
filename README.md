@@ -22,7 +22,7 @@ _"A service account is a special kind of account used by an application or a vir
 Applications use service accounts to make authorized API calls, authorized as either the service account itself or as Google Workspace 
 or Cloud Identity users through domain-wide delegation"._
 
-**Instructions** to create a service account are the following:
+**Instructions** to create a Google Service Account are the following:
 * Head over to <a href="https://console.developers.google.com/">Google developer console</a> and click on “**Create Project**”.
 * Fill in the required fields and click on “**Create**”. You will be redirected to the project home page once the project is created.
 * Click on “**Enable API and Services**”.
@@ -53,6 +53,29 @@ Install the libraries `gspread` with pip3:
 ```
 ]$ pip3 install gspread
 [..]
+```
+
+## Install the credenatials of the Google Service Account
+
+Install the JSON file downloaded when you created a Google Service Account nd rename it as `service_account.json`
+
+```
+]$ mkdir $PWD/.config
+]$ cat .config/service_account.json 
+{
+  "type": "service_account",
+  "project_id": "striped-rhino-395008",
+  "private_key_id": "****************************",
+  "private_key": "-----BEGIN PRIVATE KEY-----
+  -----END PRIVATE KEY-----\n",
+  "client_email": "python-google-sheet-service-ac@striped-rhino-395008.iam.gserviceaccount.com",
+  "client_id": "***************",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/python-google-sheet-service-ac%40striped-rhino-395008.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
 ```
 
 ## Configure the settings
@@ -118,28 +141,5 @@ export LOG="DEBUG"
 
 # SSL_CHECK=False, SSL check is disabled
 export SSL_CHECK="True"
-```
-
-## Install the credenatials of the Google Service Account
-
-Install the JSON file downloaded when you created a Google Service Account nd rename it as `service_account.json`
-
-```
-]$ mkdir $PWD/.config
-]$ cat .config/service_account.json 
-{
-  "type": "service_account",
-  "project_id": "striped-rhino-395008",
-  "private_key_id": "****************************",
-  "private_key": "-----BEGIN PRIVATE KEY-----
-  -----END PRIVATE KEY-----\n",
-  "client_email": "python-google-sheet-service-ac@striped-rhino-395008.iam.gserviceaccount.com",
-  "client_id": "***************",
-  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-  "token_uri": "https://oauth2.googleapis.com/token",
-  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/python-google-sheet-service-ac%40striped-rhino-395008.iam.gserviceaccount.com",
-  "universe_domain": "googleapis.com"
-}
 ```
 
