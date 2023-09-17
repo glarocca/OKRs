@@ -31,6 +31,7 @@ Log Level = INFO
 [noVOCPUs] VOs with *no* accounting records (3)
 [VOCPUs]   VOs with *accounting* records (47)
 ```
+The VO statistics are updated in the Google worksheet `Accounting Cloud CPU/h`
 
 ## Calculate the HTC CPU/h consumed in the specific period
 
@@ -64,3 +65,4 @@ Log Level = INFO
 [VOCPUs]   VOs with *accounting* records (60)
 ```
 
+The VO statistics are updated in the Google worksheet `Accounting HTC CPU/h`
