@@ -1,6 +1,7 @@
 This python client shows the number of VO users in the specific reporting period.
 
 ## Edit the environmental settings
+Edit the `openrc.sh` file and configure the settings
 ```
 [..]
 ##################################################################
