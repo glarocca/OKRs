@@ -1,6 +1,8 @@
 
 ## Calculate the Cloud CPU/h consumed in the specific period
 
+This python client generates statistics about the total of Cloud|HTC CPU/h of the production VOs registered in the <href="https://operations-portal.egi.eu/">EGI Operations Portal</a>. 
+
 Edit the `openrc.sh` file and configure the `scope=cloud`
 
 ```
