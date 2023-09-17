@@ -12,6 +12,7 @@ export OPERATIONS_VO_LIST_PREFIX="vo-list"
 export OPERATIONS_VO_ID_CARD_PREFIX="vo-idcard"
 export OPERATIONS_VOS_REPORT_PREFIX="egi-reports"
 
+# Google Spreadsheet settings
 export SERVICE_ACCOUNT_PATH=${PWD}"/.config/"
 export SERVICE_ACCOUNT_FILE=${SERVICE_ACCOUNT_PATH}"service_account.json"
 export GOOGLE_SHEET_NAME="OKR_Reports"
