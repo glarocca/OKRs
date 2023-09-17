@@ -80,9 +80,9 @@ Install the JSON file downloaded when you created a Google Service Account nd re
 
 ## Avaliable clients
 
-This GitHub repository includes clients to:
+This GitHub repository includes clients to calculate:
 
-- [Fetch the HTC and Cloud CPU/h of the production VOs of the EGI Federation](pyVOs_CPUs_Accounting)
-- [Calculate the number of VO users accessing the EGI Infrastructure](pyVOs_Users_Accounting)
+- [The HTC and Cloud CPU/h of the VOs of the EGI Federation](pyVOs_CPUs_Accounting)
+- [The number of VO users accessing the EGI Infrastructure](pyVOs_Users_Accounting)
 
   
