@@ -51,6 +51,8 @@ export DATE_FROM="2023/01"
 export DATE_TO="2023/06"
 ```
 
+Source the environment settings and run the client
+
 ```
 ]$ source openrc.sh && python3 pyVOs_CPUs_Accounting_v0.2.py 
 
