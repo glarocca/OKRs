@@ -15,7 +15,7 @@ export OPERATIONS_VOS_REPORT_PREFIX="egi-reports"
 export SERVICE_ACCOUNT_PATH=${PWD}"/.config/"
 export SERVICE_ACCOUNT_FILE=${SERVICE_ACCOUNT_PATH}"service_account.json"
 export GOOGLE_SHEET_NAME="OKR_Reports"
-**export GOOGLE_VOS_WORKSHEET="VOs statistics"**
+export GOOGLE_VOS_WORKSHEET="VOs statistics"
 
 export DATE_FROM="2023/01"
 export DATE_TO="2023/06"
