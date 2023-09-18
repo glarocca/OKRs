@@ -2,7 +2,7 @@ This python client generates statistics about the total of Cloud|HTC CPU/h of th
 
 ## Calculate the Cloud CPU/h consumed in the specific period
 
-Edit the `openrc.sh`, configure the `scope=cloud` and the specify the accounting metric to be calculated
+Edit the `openrc.sh`, configure the `scope=cloud` and the specify the `ACCOUNTING_METRIC` to be calculated.
 
 ```
 [..]
