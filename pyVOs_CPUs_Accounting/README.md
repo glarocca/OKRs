@@ -41,7 +41,7 @@ The VO statistics are updated in the Google worksheet `Accounting Cloud CPU/h`
 
 ## Calculate the HTC CPU/h consumed in the specific period
 
-Edit the `openrc.sh` file and configure the `scope=egi`
+Edit the `openrc.sh`, configure the `scope=egi` and the specify the `ACCOUNTING_METRIC` to be calculated.
 
 ```
 [..]
