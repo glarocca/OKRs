@@ -76,19 +76,17 @@ def get_env_settings():
 
     d = {}
     try:
-        # EGI Operations Portal settings
-        d["OPERATIONS_SERVER_URL"] = os.environ["OPERATIONS_SERVER_URL"]
-        d["OPERATIONS_API_KEY"] = os.environ["OPERATIONS_API_KEY"]
-        d["OPERATIONS_FORMAT"] = os.environ["OPERATIONS_FORMAT"]
-        d["OPERATIONS_VO_LIST_PREFIX"] = os.environ["OPERATIONS_VO_LIST_PREFIX"]
-        d["OPERATIONS_VO_ID_CARD_PREFIX"] = os.environ["OPERATIONS_VO_ID_CARD_PREFIX"]
-        d["OPERATIONS_VOS_REPORT_PREFIX"] = os.environ["OPERATIONS_VOS_REPORT_PREFIX"]
+        # EGI Jira Portal settings
+        d["JIRA_SERVER_URL"] = os.environ["JIRA_SERVER_URL"]
+        d["JIRA_AUTH_TOKEN"] = os.environ["JIRA_AUTH_TOKEN"]
+        d["SERVICE_ORDERS_PROJECTKEY"] = os.environ["SERVICE_ORDERS_PROJECTKEY"]
+        d["SERVICE_ORDERS_ISSUETYPE"] = os.environ["SERVICE_ORDERS_ISSUETYPE"]
 
         # GoogleSheet settings
         d["SERVICE_ACCOUNT_PATH"] = os.environ["SERVICE_ACCOUNT_PATH"]
         d["SERVICE_ACCOUNT_FILE"] = os.environ["SERVICE_ACCOUNT_FILE"]
         d["GOOGLE_SHEET_NAME"] = os.environ["GOOGLE_SHEET_NAME"]
-        d["GOOGLE_VOS_WORKSHEET"] = os.environ["GOOGLE_VOS_WORKSHEET"]
+        d["GOOGLE_SERVICE_ORDERS_WORKSHEET"] = os.environ["GOOGLE_SERVICE_ORDERS_WORKSHEET"]
 
         # Generic settings
         d["LOG"] = os.environ["LOG"]
