@@ -64,3 +64,4 @@ Install the library `gspread` with pip3:
 This GitHub repository includes clients to calculate:
 
 * [The HTC and Cloud CPU/h of the VOs of the EGI Federation](pyOKR_VOs_CPUs_Accounting)
+* [The number of users in the production VOs of the EGI Federation](pyOKR_VOs_Users_Accounting)
