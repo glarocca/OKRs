@@ -1,8 +1,10 @@
-This python client shows the number of VO users in the specific reporting period.
+# pyOKR_VOs_Users_Accounting
+
+This python client calculates the number of users of the production VOs.
 
 ## Edit the environmental settings
 
-Edit the `openrc.sh` file and configure the server settings.
+Edit the `openrc.sh` file and configure the settings.
 
 ```
 [..]
@@ -24,7 +26,7 @@ export DATE_FROM="2023/01"
 export DATE_TO="2023/06"
 ```
 
-## Calculate the number of users in the production VOs (in the specific period)
+## Calculate the number of users of the production VOs (in the specific period)
 
 ```
 ]$ source openrc.sh && python3 pyVOs_Users_Accounting_v0.5.py 2>&1 out
