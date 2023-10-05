@@ -65,3 +65,4 @@ This GitHub repository includes clients to calculate:
 
 * [The HTC and Cloud CPU/h of the VOs of the EGI Federation](pyOKR_VOs_CPUs_Accounting)
 * [The number of users in the production VOs of the EGI Federation](pyOKR_VOs_Users_Accounting)
+* [The number of Services Orders (SOs) received throught the EOSC Marketplace](pyOKR_ServiceOrders)
