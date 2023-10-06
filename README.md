@@ -73,7 +73,7 @@ This GitHub repository includes clients to generate:
 * [Generate an API Token for the EGI Operations Portal](https://operations-portal.egi.eu/api-documentation)
 * [Generate an API Token for the EGI Jira Portal](https://support.atlassian.com/atlassian-account/docs/manage-api-tokens-for-your-atlassian-account/)
 
-## EGI Internal Federate and Collaboration services
+## EGI services
 
 * [EGI Operations Portal](https://operations-portal.egi.eu/)
 * [EGI Accounting Portal](https://accounting.egi.eu/)
