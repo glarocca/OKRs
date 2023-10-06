@@ -59,8 +59,13 @@ Install the library `gspread` with pip3:
 
 ## Avaliable clients
 
-This GitHub repository includes clients to calculate:
+This GitHub repository includes clients to generate:
 
 * [The HTC and Cloud CPU/h of the VOs of the EGI Federation](pyOKR_VOs_CPUs_Accounting)
 * [The number of users in the production VOs of the EGI Federation](pyOKR_VOs_Users_Accounting)
 * [The number of Services Orders (SOs) received throught the EOSC Marketplace](pyOKR_ServiceOrders_Accounting)
+
+## Reference
+
+* [gspread APIs documentation](https://docs.gspread.org/en/v5.10.0/)
+* [How to connect Python to GoogleSheets](https://blog.coupler.io/python-to-google-sheets/)
