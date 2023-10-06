@@ -69,3 +69,4 @@ This GitHub repository includes clients to generate:
 
 * [gspread APIs documentation](https://docs.gspread.org/en/v5.10.0/)
 * [How to connect Python to GoogleSheets](https://blog.coupler.io/python-to-google-sheets/)
+* [Google Developer Console](https://console.cloud.google.com/apis/dashboard)
