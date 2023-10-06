@@ -1,6 +1,6 @@
 # pyOKR_VOs_CPUs_Accounting
 
-## Install the credenatials of the Google Service Account
+## Install the credentials of the Google Service Account
 
 Install the JSON file downloaded when you created a Google Service Account nd rename it as `service_account.json`
 
@@ -44,6 +44,15 @@ export SERVICE_ACCOUNT_FILE=${SERVICE_ACCOUNT_PATH}"service_account.json"
 export GOOGLE_SHEET_NAME="OKR_Reports"
 export GOOGLE_CLOUD_WORKSHEET="Accounting Cloud CPU/h"
 
+# LOG=INFO, no verbose logging is 'OFF'
+# LOG=DEBUG, verbose logging is 'ON'
+#export LOG="INFO"
+export LOG="DEBUG"
+
+# SSL_CHECK=False, SSL check is disabled
+export SSL_CHECK="True"
+#export SSL_CHECK="False"
+
 export DATE_FROM="2023/01"
 export DATE_TO="2023/06"
 ```
@@ -84,6 +93,15 @@ export SERVICE_ACCOUNT_PATH=${PWD}"/.config/"
 export SERVICE_ACCOUNT_FILE=${SERVICE_ACCOUNT_PATH}"service_account.json"
 export GOOGLE_SHEET_NAME="OKR_Reports"
 export GOOGLE_HTC_WORKSHEET="Accounting HTC CPU/h"
+
+# LOG=INFO, no verbose logging is 'OFF'
+# LOG=DEBUG, verbose logging is 'ON'
+#export LOG="INFO"
+export LOG="DEBUG"
+
+# SSL_CHECK=False, SSL check is disabled
+export SSL_CHECK="True"
+#export SSL_CHECK="False"
 
 export DATE_FROM="2023/01"
 export DATE_TO="2023/06"

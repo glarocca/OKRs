@@ -1,6 +1,30 @@
 # pyOKR_VOs_Users_Accounting
 
-This python client calculates the number of users of the production VOs.
+## Install the credentials of the Google Service Account
+
+Install the JSON file downloaded when you created a Google Service Account nd rename it as `service_account.json`
+
+```bash
+]$ mkdir $PWD/.config
+]$ cat .config/service_account.json
+{
+  "type": "service_account",
+  "project_id": "striped-rhino-395008",
+  "private_key_id": "<ADD_PRIVATE_KEY_ID> HERE",
+  "private_key": "<ADD PRIVATE_KEY> HERE",
+  "client_email": "python-google-sheet-service-ac@striped-rhino-395008.iam.gserviceaccount.com",
+  "client_id": "<ADD CLIENT_ID> HERE",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/python-google-sheet-service-ac%40striped-rhino-395008.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
+```
+
+## Calculate the Service Orders received in the specific period
+
+This python client calculates the number of users of the production VOs registered in the [EGI Operations Portal](https://operations-portal.egi.eu/).
 
 ## Edit the environmental settings
 
@@ -20,21 +44,30 @@ export OPERATIONS_VOS_REPORT_PREFIX="egi-reports"
 export SERVICE_ACCOUNT_PATH=${PWD}"/.config/"
 export SERVICE_ACCOUNT_FILE=${SERVICE_ACCOUNT_PATH}"service_account.json"
 export GOOGLE_SHEET_NAME="OKR_Reports"
-export GOOGLE_VOS_WORKSHEET="VOs statistics"
+export GOOGLE_VOS_WORKSHEET="VOs statistics (certs)"
 
-export DATE_FROM="2023/01"
-export DATE_TO="2023/06"
+# LOG=INFO, no verbose logging is 'OFF'
+# LOG=DEBUG, verbose logging is 'ON'
+#export LOG="INFO"
+export LOG="DEBUG"
+
+# SSL_CHECK=False, SSL check is disabled
+export SSL_CHECK="True"
+#export SSL_CHECK="False"
+
+export DATE_FROM="2021/01"
+export DATE_TO="2021/03"
 ```
 
 ## Calculate the number of users of the production VOs (in the specific period)
 
 ```
-]$ source openrc.sh && python3 pyVOs_Users_Accounting_v0.5.py 2>&1 out
+]$ source openrc.sh && python3 pyVOs_Users_Accounting_v0.5.py
 
 Log Level = INFO
 
-[INFO] 	Reporting Period: '2021.07-12'
-	The header '2021.07-12' is *already* in the Worksheet
+[INFO] 	Reporting Period: '2021.01-03'
+	The header '2021.01-03' is *already* in the Worksheet
 
 [INFO] 	Downloading the VOs metadata from the EGI Operations Portal in progress..
 	This operation may take few minutes. Please wait!
