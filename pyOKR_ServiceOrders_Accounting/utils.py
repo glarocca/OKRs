@@ -86,7 +86,9 @@ def get_env_settings():
         d["SERVICE_ACCOUNT_PATH"] = os.environ["SERVICE_ACCOUNT_PATH"]
         d["SERVICE_ACCOUNT_FILE"] = os.environ["SERVICE_ACCOUNT_FILE"]
         d["GOOGLE_SHEET_NAME"] = os.environ["GOOGLE_SHEET_NAME"]
-        d["GOOGLE_SERVICE_ORDERS_WORKSHEET"] = os.environ["GOOGLE_SERVICE_ORDERS_WORKSHEET"]
+        d["GOOGLE_SERVICE_ORDERS_WORKSHEET"] = os.environ[
+            "GOOGLE_SERVICE_ORDERS_WORKSHEET"
+        ]
 
         # Generic settings
         d["LOG"] = os.environ["LOG"]

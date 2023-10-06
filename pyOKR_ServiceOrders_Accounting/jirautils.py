@@ -19,10 +19,9 @@ import json
 import requests
 import warnings
 
-warnings.filterwarnings("ignore")
-from datetime import date
-from dateutil.parser import parse
 from utils import colourise
+
+warnings.filterwarnings("ignore")
 
 __author__ = "Giuseppe LA ROCCA"
 __email__ = "giuseppe.larocca@egi.eu"
