@@ -53,8 +53,8 @@ export LOG="DEBUG"
 export SSL_CHECK="True"
 #export SSL_CHECK="False"
 
-export DATE_FROM="2023/01"
-export DATE_TO="2023/06"
+export DATE_FROM="2020/01"
+export DATE_TO="2020/03"
 ```
 
 Source the environment settings and run the client
@@ -64,10 +64,10 @@ Source the environment settings and run the client
 
 Log Level = INFO
 
-[INFO]     Reporting Period: 2020.01-06
-[Cloud]    Total Cloud CPU/h = 12,050,254
+[INFO]     Reporting Period: 2020.01-03
+[Cloud]    Total Cloud CPU/h = 5,502,465
 [noVOCPUs] VOs with *no* accounting records (3)
-[VOCPUs]   VOs with *accounting* records (47)
+[VOCPUs]   VOs with *accounting* records (42)
 ```
 
 The VO statistics are updated in the Google worksheet `Accounting Cloud CPU/h`
@@ -103,8 +103,8 @@ export LOG="DEBUG"
 export SSL_CHECK="True"
 #export SSL_CHECK="False"
 
-export DATE_FROM="2023/01"
-export DATE_TO="2023/06"
+export DATE_FROM="2020/01"
+export DATE_TO="2020/03"
 ```
 
 Source the environment settings and run the client
@@ -114,10 +114,10 @@ Source the environment settings and run the client
 
 Log Level = INFO
 
-[INFO]     Reporting Period: 2020.01-06
-[HTC]      Total HTC CPU/h = 2,677,303,881
-[noVOCPUs] VOs with *no* accounting records (3)
-[VOCPUs]   VOs with *accounting* records (60)
+[INFO]     Reporting Period: 2020.01-03
+[HTC]      Total HTC CPU/h = 1,336,676,765
+[noVOCPUs] VOs with *no* accounting records (0)
+[VOCPUs]   VOs with *accounting* records (59)
 ```
 
 The VO statistics are updated in the Google worksheet `Accounting HTC CPU/h`
