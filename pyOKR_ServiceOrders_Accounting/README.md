@@ -4,7 +4,7 @@ This python client calculates the number of Service Orders received from the [EO
 
 ## Install the credentials of the Google Service Account
 
-Install the JSON file downloaded when you created a Google Service Account nd rename it as `service_account.json`
+Install the JSON file downloaded when you created a Google Service Account and rename it as `service_account.json`
 
 ```bash
 ]$ mkdir $PWD/.config
