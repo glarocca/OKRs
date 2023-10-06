@@ -1,6 +1,6 @@
 # pyOKR_ServiceOrders_Accounting
 
-This python client calculates the number of Service Orders received from the [EOSC MarketPlace](https://marketplace.eosc-portal.eu/).
+This python client calculates the number of Service Orders received from the [EOSC Marketplace](https://marketplace.eosc-portal.eu/).
 
 ## Install the credentials of the Google Service Account
 
