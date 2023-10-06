@@ -70,3 +70,5 @@ This GitHub repository includes clients to generate:
 * [gspread APIs documentation](https://docs.gspread.org/en/v5.10.0/)
 * [How to connect Python to GoogleSheets](https://blog.coupler.io/python-to-google-sheets/)
 * [Google Developer Console](https://console.cloud.google.com/apis/dashboard)
+* [Generate an API Token for the EGI Operations Portal](https://operations-portal.egi.eu/api-documentation)
+* [Generate an API token for the EGI Jira Portal](https://support.atlassian.com/atlassian-account/docs/manage-api-tokens-for-your-atlassian-account/)
