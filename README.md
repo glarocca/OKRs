@@ -1,4 +1,4 @@
-# OKR-statistics
+# OKRs
 
 This repository contains python clients to produce statistics that can be
 used by EGI Foundation team to identify trends and monitor progress following
