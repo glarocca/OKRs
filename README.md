@@ -61,7 +61,7 @@ Install the library `gspread` with pip3:
 
 This GitHub repository includes clients to generate:
 
-* [The HTC and Cloud CPU/h of the VOs of the EGI Federation](pyOKR_VOs_CPUs_Accounting)
+* [The HTC and Cloud CPU/h of the production VOs of the EGI Federation](pyOKR_VOs_CPUs_Accounting)
 * [The number of users in the production VOs of the EGI Federation](pyOKR_VOs_Users_Accounting)
 * [The number of Services Orders (SOs) received throught the EOSC Marketplace](pyOKR_ServiceOrders_Accounting)
 
@@ -72,3 +72,9 @@ This GitHub repository includes clients to generate:
 * [Google Developer Console](https://console.cloud.google.com/apis/dashboard)
 * [Generate an API Token for the EGI Operations Portal](https://operations-portal.egi.eu/api-documentation)
 * [Generate an API Token for the EGI Jira Portal](https://support.atlassian.com/atlassian-account/docs/manage-api-tokens-for-your-atlassian-account/)
+
+## EGI Internal Federate and Collaboration services
+
+* [EGI Operations Portal](https://operations-portal.egi.eu/)
+* [EGI Accounting Portal](https://accounting.egi.eu/)
+* [EGI Jira Portal](https://jira.egi.eu/)
