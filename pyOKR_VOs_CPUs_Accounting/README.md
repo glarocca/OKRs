@@ -21,7 +21,6 @@ Install the JSON file downloaded when you created a Google Service Account and r
   "universe_domain": "googleapis.com"
 }
 ```
-
 Ask [Giuseppe La Rocca](mailto:giuseppe.larocca@egi.eu) for a copy of this Google Service Account.
 
 
