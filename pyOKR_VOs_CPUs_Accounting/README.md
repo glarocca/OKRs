@@ -22,6 +22,8 @@ Install the JSON file downloaded when you created a Google Service Account and r
 }
 ```
 
+Ask [Giuseppe La Rocca](mailto:giuseppe.larocca@egi.eu) for a copy of this Google Service Account.
+
 ## Calculate the Cloud CPU/h consumed in the specific period
 
 This python client generates the Cloud CPU/h of the production VOs registered in the [EGI Operations Portal](https://operations-portal.egi.eu/)
