@@ -65,7 +65,7 @@ This GitHub repository includes clients to generate:
 * [The number of users in the production VOs of the EGI Federation](pyOKR_VOs_Users_Accounting)
 * [The number of Services Orders (SOs) received throught the EOSC Marketplace](pyOKR_ServiceOrders_Accounting)
 
-## Reference
+## References
 
 * [gspread APIs documentation](https://docs.gspread.org/en/v5.10.0/)
 * [How to connect Python to GoogleSheets](https://blog.coupler.io/python-to-google-sheets/)
