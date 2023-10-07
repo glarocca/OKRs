@@ -26,8 +26,8 @@ export ACCOUNTING_VO_GROUP_SELECTOR="egi"
 # Available Data Selector: 'JSON', 'CSV'
 export ACCOUNTING_DATA_SELECTOR="JSON"
 
-export DATE_FROM="2020/01"
-export DATE_TO="2020/03"
+export DATE_FROM="2022/07"
+export DATE_TO="2022/09"
 
 ###########################################################
 # G O O G L E ** S P R E A D S H E E T ** S E T T I N G S #

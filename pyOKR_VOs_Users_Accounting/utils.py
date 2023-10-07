@@ -15,14 +15,35 @@
 #  limitations under the License.
 #
 
+import difflib
 import os
 
 __author__ = "Giuseppe LA ROCCA"
 __email__ = "giuseppe.larocca@egi.eu"
-__version__ = "$Revision: 0.7"
-__date__ = "$Date: 05/09/2023 11:58:27"
+__version__ = "$Revision: 0."
+__date__ = "$Date: 07/10/2023 11:58:27"
 __copyright__ = "Copyright (c) 2023 EGI Foundation"
 __license__ = "Apache Licence v2.0"
+
+
+def find_difference(activeVOs_1, activeVOs_2):
+    ''' Find difference between two strings '''
+
+    # Splitting strings into list items
+    activeVOs_1 = activeVOs_1.split(", ")
+    activeVOs_2 = activeVOs_2.split(", ")
+
+    # Store string list items in set
+    A = set(activeVOs_1)
+    B = set(activeVOs_2)
+    str_diff = A.symmetric_difference(B)
+
+    isEmpty = (len(str_diff) == 0)
+
+    if isEmpty:
+       str_diff = ""
+
+    return(str_diff)
 
 
 def colourise(colour, text):

@@ -19,11 +19,9 @@ import datetime
 import gspread
 import json
 import requests
-import time
 import warnings
 
-from operationsutils import get_VO_users, get_VO_stats, get_VOs_stats
-from utils import colourise, get_env_settings
+from utils import colourise, get_env_settings, find_difference
 
 warnings.filterwarnings("ignore")
 

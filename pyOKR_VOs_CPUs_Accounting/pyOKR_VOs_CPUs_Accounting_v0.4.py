@@ -21,9 +21,9 @@ import json
 import requests
 import warnings
 
-from utils import colourise, get_env_settings
-
 warnings.filterwarnings("ignore")
+
+from utils import colourise, get_env_settings, find_difference
 
 __author__ = "Giuseppe LA ROCCA"
 __email__ = "giuseppe.larocca@egi.eu"
@@ -129,13 +129,15 @@ def update_GWorkSheet(
     flag = False  # Accounting period not found in the GSpreadsheet
     for item in worksheet.get_all_records():
         if item["Period"] == accounting_period:
+            cell = worksheet.find(item["Period"])
             flag = True
 
-            cell = worksheet.find(item["Period"])
             # Updating the cell of the Google Worksheet
             worksheet.update_cell(cell.row, cell.col + 1, total_cpu)
+
             # Total number of VOs with accounting
             worksheet.update_cell(cell.row, cell.col + 2, totalVOCPUs)
+
             # List of active VOs
             if VOs_string:
                 worksheet.update_cell(cell.row, cell.col + 3, VOs_string)
@@ -150,6 +152,17 @@ def update_GWorkSheet(
                 worksheet.update_cell(cell.row, cell.col + 5, NOVOs_string)
             else:
                 worksheet.update_cell(cell.row, cell.col + 5, "-")
+
+            if cell.row > 2:
+                # Calculate difference
+                result = find_difference(
+                    worksheet.cell(cell.row, 4).value,
+                    worksheet.cell(cell.row - 1, 4).value,
+                )
+
+                worksheet.update_cell(cell.row, cell.col + 6, str(result))
+            else:
+                worksheet.update_cell(cell.row, cell.col + 6, "-")
 
             if env["ACCOUNTING_SCOPE"] == "cloud":
                 print(
@@ -180,6 +193,29 @@ def update_GWorkSheet(
         index = get_GWorkSheetCellPosition(worksheet, accounting_period)
         worksheet.insert_row(body, index=index, inherit_from_before=True)
 
+        if get_GWorkSheetCellPosition(worksheet, accounting_period) > 2:
+            # Calculate difference
+            result = find_difference(
+                worksheet.cell(
+                    get_GWorkSheetCellPosition(worksheet, accounting_period), 4
+                ).value,
+                worksheet.cell(
+                    get_GWorkSheetCellPosition(worksheet, accounting_period) - 1, 4
+                ).value,
+            )
+
+            worksheet.update_cell(
+                get_GWorkSheetCellPosition(worksheet, accounting_period),
+                cell.col + 6,
+                str(result),
+            )
+        else:
+            worksheet.update_cell(
+                get_GWorkSheetCellPosition(worksheet, accounting_period),
+                cell.col + 6,
+                "-",
+            )
+
     # Update the timestamp of the last update
     worksheet.insert_note("A1", "Last update on: " + timestamp)
 
@@ -207,7 +243,9 @@ def main():
     accounting_period = (
         env["DATE_FROM"][0:4] + "." + env["DATE_FROM"][-2:] + "-" + env["DATE_TO"][-2:]
     )
-    print(colourise("cyan", "\n[INFO]"), "    Reporting Period: %s" % accounting_period)
+    print(
+        colourise("cyan", "\n[INFO]"), "     Reporting Period: %s" % accounting_period
+    )
 
     try:
         for record in data:
@@ -229,7 +267,7 @@ def main():
                 if "cloud" in env["ACCOUNTING_SCOPE"]:
                     print(
                         colourise("green", "[Cloud]"),
-                        "   Total Cloud CPU/h = %s" % format(record["Total"], "7,d"),
+                        "    Total Cloud CPU/h = %s" % format(record["Total"], "7,d"),
                     )
                     total_cloud_cpu = record["Total"]
 
@@ -244,7 +282,7 @@ def main():
 
                     print(
                         colourise("yellow", "[VOCPUs]"),
-                        "  VOs with *accounting* records (%d)" % total,
+                        "   VOs with *accounting* records (%d)" % total,
                     )
 
                     if env["LOG"] == "DEBUG":
@@ -257,7 +295,7 @@ def main():
                     # Accounting records for the HTC resource centres
                     print(
                         colourise("green", "[HTC]"),
-                        "     Total HTC CPU/h = %s" % format(record["Total"], "7,d"),
+                        "      Total HTC CPU/h = %s" % format(record["Total"], "7,d"),
                     )
                     total_htc_cpu = record["Total"]
 
@@ -272,7 +310,7 @@ def main():
 
                     print(
                         colourise("yellow", "[VOCPUs]"),
-                        "  VOs with *accounting* records (%d)" % total,
+                        "   VOs with *accounting* records (%d)" % total,
                     )
 
                     if env["LOG"] == "DEBUG":
