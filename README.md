@@ -6,8 +6,8 @@ the **Objectives and Key Results (OKRs)** goal-setting framework.
 
 * **Cloud CPU/h** consumed by the production VOs of EGI
 * **HTC CPU/h** consumed by the production VOs of EGI
-* Num. of **'Active'**, **'Total'** and **'Actual'** users of the production
-  - Active users = Number of users registered into the registries (VOMS, COManage, Perun) not necessarily active.
+* Num. of **'Registered'**, **'Total'** and **'Active'** users of the production
+  - Registered users = Number of users registered into the registries (VOMS, COManage, Perun) not necessarily active.
   - Total users = Number of total users registered in the DB since the 1st capture for a given VO.
 * VOs registered in the [EGI Operations Portal](https://operations-portal.egi.eu/)
 * Num. of **Service Orders (SOs)** received from the [EOSC Marketplace](https://marketplace.eosc-portal.eu/)
