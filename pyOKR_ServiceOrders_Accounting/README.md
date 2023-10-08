@@ -42,10 +42,6 @@ export JIRA_AUTH_TOKEN="MTMzNDkxMjYwNzg2OlGxzek1UQ0qIV0pa0c8yXk9BvAI"
 # Project used for the Customers' complains
 export COMPLAINS_PROJECTKEY="EGIREQ"
 
-# Project used for the VO SLA violations
-export VIOLATIONS_PROJECTKEY="IMSSLA"
-export ISSUETYPE="SLA Violation"
-
 # Project used for the Service Orders
 export SERVICE_ORDERS_PROJECTKEY="EOSCSO"
 #export SERVICE_ORDERS_ISSUETYPE="Epic"
