@@ -9,10 +9,6 @@ export JIRA_AUTH_TOKEN="<ADD_JIRA_AUTH_TOKEN>"
 # Project used for the Customers' complains
 export COMPLAINS_PROJECTKEY="EGIREQ"
 
-# Project used for the VO SLA violations
-export VIOLATIONS_PROJECTKEY="IMSSLA"
-export ISSUETYPE="SLA Violation"
-
 # Project used for the Service Orders
 export SERVICE_ORDERS_PROJECTKEY="EOSCSO"
 #export SERVICE_ORDERS_ISSUETYPE="Epic"
