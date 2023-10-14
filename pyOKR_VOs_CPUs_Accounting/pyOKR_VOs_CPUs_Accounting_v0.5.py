@@ -16,19 +16,20 @@
 #
 
 import datetime
-import gspread
 import json
-import requests
-import time
 import warnings
+
+import gspread
+import requests
+
 warnings.filterwarnings("ignore")
 
-from utils import colourise, get_env_settings, find_difference
+from utils import colourise, find_difference, get_env_settings
 
 __author__    = "Giuseppe LA ROCCA"
 __email__     = "giuseppe.larocca@egi.eu"
 __version__   = "$Revision: 0.5"
-__date__      = "$Date: 13/10/2023 10:50:22"
+__date__      = "$Date: 14/10/2023 10:50:22"
 __copyright__ = "Copyright (c) 2023 EGI Foundation"
 __license__   = "Apache Licence v2.0"
 
@@ -79,9 +80,10 @@ def get_GWorkSheetCellPosition(worksheet, accounting_period):
     _cell = _cell2 = ""
     flag = False
 
-    for item in worksheet.get_all_records():
-        cell = worksheet.find(item['Period'])
-        if item['Period'] < accounting_period:
+    worksheet_dicts = worksheet.get_all_records()
+    for worksheet_dict in worksheet_dicts:
+        cell = worksheet.find(worksheet_dict['Period'])
+        if worksheet_dict['Period'] < accounting_period:
             _cell2 = cell.row
         else:
             _cell = cell
@@ -124,87 +126,78 @@ def update_GWorkSheet(env, worksheet, accounting_period, total_cpu, noVOsCPUs, t
 
     flag = False # Accounting period not found in the GSpreadsheet
     worksheet_dicts = worksheet.get_all_records()
-    
-    try:
-        for item in worksheet_dicts:
-            if (item['Period'] == accounting_period):
+    for item in worksheet_dicts:
+        if (item['Period'] == accounting_period):
            
-               cell = worksheet.find(item['Period'])
-               flag = True
+           cell = worksheet.find(item['Period'])
+           flag = True
 
-               # Updating the cell of the Google Worksheet
-               worksheet.update_cell(cell.row, cell.col + 1, total_cpu)
+           # Updating the cell of the Google Worksheet
+           worksheet.update_cell(cell.row, cell.col + 1, total_cpu)
            
-               # Total number of VOs with accounting
-               worksheet.update_cell(cell.row, cell.col + 2, totalVOCPUs)
+           # Total number of VOs with accounting
+           worksheet.update_cell(cell.row, cell.col + 2, totalVOCPUs)
            
-               # List of active VOs
-               if VOs_string:
-                  worksheet.update_cell(cell.row, cell.col + 3, VOs_string)
-               else:
-                  worksheet.update_cell(cell.row, cell.col + 3, '-')
+           # List of active VOs
+           if VOs_string:
+              worksheet.update_cell(cell.row, cell.col + 3, VOs_string)
+           else:
+              worksheet.update_cell(cell.row, cell.col + 3, '-')
 
-               # Total number of VOs without accounting
-               worksheet.update_cell(cell.row, cell.col + 4, len(noVOsCPUs))
+           # Total number of VOs without accounting
+           worksheet.update_cell(cell.row, cell.col + 4, len(noVOsCPUs))
         
-               # VOs with *NO* accounting
-               if len(noVOsCPUs):
-                  worksheet.update_cell(cell.row, cell.col + 5, NOVOs_string)
-               else:   
-                  worksheet.update_cell(cell.row, cell.col + 5, '-')
+           # VOs with *NO* accounting
+           if len(noVOsCPUs):
+              worksheet.update_cell(cell.row, cell.col + 5, NOVOs_string)
+           else:   
+              worksheet.update_cell(cell.row, cell.col + 5, '-')
 
-               if (cell.row > 2):
-                  # Calculate difference
-                  result = find_difference(
-                       worksheet.cell(cell.row, 4).value,
-                       worksheet.cell(cell.row - 1, 4).value)
+           if (cell.row > 2):
+               # Calculate VOs difference
+               newVOs_str, leavingVOs_str = find_difference(
+                       worksheet.cell(cell.row - 1, 4).value,
+                       worksheet.cell(cell.row, 4).value)
 
-                  worksheet.update_cell(cell.row, cell.col + 6, str(result))
-               else:
-                  worksheet.update_cell(cell.row, cell.col + 6, '-')
+               result = "APPEARED: " + newVOs_str + "\n" \
+               "DISAPPEARED: " + leavingVOs_str
+
+               worksheet.update_cell(cell.row, cell.col + 6, result)
+           else:
+               worksheet.update_cell(cell.row, cell.col + 6, '-')
            
-               if env['ACCOUNTING_SCOPE'] == "cloud":
-                  print("Updated the Total Cloud CPU/h for the reporting period: %s" %accounting_period)
-               else:   
-                  print("Updated the Total HTC CPU/h for the reporting period: %s" %accounting_period)
-    except:
-              print(colourise("red", "[WARNING]"), \
-              "Quota exceeded for metric 'Write requests' and 'Write requests per minute per user'")
-              time.sleep (60)
-              
+           if env['ACCOUNTING_SCOPE'] == "cloud":
+              print("Updated the Total Cloud CPU/h for the reporting period: %s" %accounting_period)
+           else:   
+              print("Updated the Total HTC CPU/h for the reporting period: %s" %accounting_period)
+           
     if not flag:
            print("Adding %s" %accounting_period + " at row:", 
                    get_GWorkSheetCellPosition(worksheet, accounting_period))
-           
-           if get_GWorkSheetCellPosition(worksheet, accounting_period) > 2:
-              result = find_difference(
-                 worksheet.cell(get_GWorkSheetCellPosition(worksheet, accounting_period), 4).value,
-                 worksheet.cell(get_GWorkSheetCellPosition(worksheet, accounting_period) - 1, 4).value)
+          
+           if (get_GWorkSheetCellPosition(worksheet, accounting_period) > 2):
+               result = find_difference(
+                  worksheet.cell(get_GWorkSheetCellPosition(worksheet, accounting_period), 4).value,
+                  worksheet.cell(get_GWorkSheetCellPosition(worksheet, accounting_period) - 1, 4).value)
 
-              body = [accounting_period, 
-                    total_cpu, 
-                    totalVOCPUs, 
-                    VOs_string,
-                    len(noVOsCPUs),
-                    NOVOs_string,
-                    str(result)]
+               body = [accounting_period, 
+                       total_cpu, 
+                       totalVOCPUs, 
+                       VOs_string,
+                       len(noVOsCPUs),
+                       NOVOs_string,
+                       str(result)]
            else:
-                body = [accounting_period,
-                    total_cpu,
-                    totalVOCPUs,
-                    VOs_string,
-                    len(noVOsCPUs),
-                    NOVOs_string,
-                    '-']
-             
-           # Insert the new cell with the data
+               body = [accounting_period,
+                       total_cpu,
+                       totalVOCPUs,
+                       VOs_string,
+                       len(noVOsCPUs),
+                       NOVOs_string,
+                       '-']
+
            index = get_GWorkSheetCellPosition(worksheet, accounting_period)
            worksheet.insert_row(body, index=index, inherit_from_before=True)
-
-   # except:
-   #           print(colourise("red", "[WARNING]"), \
-   #           "Quota exceeded for metric 'Write requests' and 'Write requests per minute per user'")
-   #           time.sleep (60)
 
     # Update the timestamp of the last update
     worksheet.insert_note("A1","Last update on: " + timestamp)

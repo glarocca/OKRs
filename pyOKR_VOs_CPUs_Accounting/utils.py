@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 #
 #  Copyright 2023 EGI Foundation
-#
+# 
 #  Licensed under the Apache License, Version 2.0 (the "License");
 #  you may not use this file except in compliance with the License.
 #  You may obtain a copy of the License at
@@ -18,16 +18,19 @@
 import difflib
 import os
 
-__author__ = "Giuseppe LA ROCCA"
-__email__ = "giuseppe.larocca@egi.eu"
-__version__ = "$Revision: 0.8"
-__date__ = "$Date: 08/10/2023 11:58:27"
+__author__    = "Giuseppe LA ROCCA"
+__email__     = "giuseppe.larocca@egi.eu"
+__version__   = "$Revision: 0.8"
+__date__      = "$Date: 07/10/2023 11:58:27"
 __copyright__ = "Copyright (c) 2023 EGI Foundation"
-__license__ = "Apache Licence v2.0"
+__license__   = "Apache Licence v2.0"
 
 
 def find_difference(activeVOs_1, activeVOs_2):
-    """Find difference between two strings"""
+    ''' Find difference between two strings ''' 
+
+    newVOs_list = []
+    leavingVOs_list = []
 
     # Splitting strings into list items
     activeVOs_1 = activeVOs_1.split(", ")
@@ -37,18 +40,35 @@ def find_difference(activeVOs_1, activeVOs_2):
     A = set(activeVOs_1)
     B = set(activeVOs_2)
     str_diff = A.symmetric_difference(B)
-
-    isEmpty = len(str_diff) == 0
+    
+    isEmpty = (len(str_diff) == 0)
 
     if isEmpty:
-        str_diff = ""
+       str_diff = ""
+  
+    # Iterating using for loop
+    for value in str_diff:
+        if value in activeVOs_1 and value not in activeVOs_2:
+            leavingVOs_list.append(value)
+        if value in activeVOs_2 and value not in activeVOs_1:    
+            newVOs_list.append(value)
 
-    return str_diff
+    # Convert python list() to str()
+    newVOs_str = ', '.join([str(elem) for elem in newVOs_list])
+    leavingVOs_str = ', '.join([str(elem) for elem in leavingVOs_list])
+
+    if newVOs_str == "":
+        newVOs_str = "-"
+
+    if leavingVOs_str == "":
+        leavingVOs_str = "-"
+
+    return(newVOs_str, leavingVOs_str)
 
 
 def colourise(colour, text):
-    """Colourise - colours text in shell."""
-    """ Returns plain if colour doesn't exist """
+    ''' Colourise - colours text in shell. '''
+    ''' Returns plain if colour doesn't exist '''
 
     if colour == "black":
         return "\033[1;30m" + str(text) + "\033[1;m"
@@ -70,8 +90,8 @@ def colourise(colour, text):
 
 
 def highlight(colour, text):
-    """Highlight - highlights text in shell."""
-    """ Returns plain if colour doesn't exist. """
+    ''' Highlight - highlights text in shell. '''
+    ''' Returns plain if colour doesn't exist. '''
 
     if colour == "black":
         return "\033[1;40m" + str(text) + "\033[1;m"
@@ -93,32 +113,61 @@ def highlight(colour, text):
 
 
 def get_env_settings():
-    """Reading profile settings from env"""
+        ''' Reading profile settings from env '''
 
-    d = {}
-    try:
-        # EGI Accounting settings
-        d["ACCOUNTING_SERVER_URL"] = os.environ["ACCOUNTING_SERVER_URL"]
-        d["ACCOUNTING_SCOPE"] = os.environ["ACCOUNTING_SCOPE"]
-        d["ACCOUNTING_METRIC"] = os.environ["ACCOUNTING_METRIC"]
-        d["ACCOUNTING_LOCAL_JOB_SELECTOR"] = os.environ["ACCOUNTING_LOCAL_JOB_SELECTOR"]
-        d["ACCOUNTING_VO_GROUP_SELECTOR"] = os.environ["ACCOUNTING_VO_GROUP_SELECTOR"]
-        d["ACCOUNTING_DATA_SELECTOR"] = os.environ["ACCOUNTING_DATA_SELECTOR"]
+        d = {}
+        try:
+           # EGI Accounting Portal settings 
+           d['ACCOUNTING_SERVER_URL'] = os.environ['ACCOUNTING_SERVER_URL']
+           d['ACCOUNTING_SCOPE'] = os.environ['ACCOUNTING_SCOPE']
+           d['ACCOUNTING_METRIC'] = os.environ['ACCOUNTING_METRIC']
+           d['ACCOUNTING_LOCAL_JOB_SELECTOR'] = os.environ['ACCOUNTING_LOCAL_JOB_SELECTOR']
+           d['ACCOUNTING_VO_GROUP_SELECTOR'] = os.environ['ACCOUNTING_VO_GROUP_SELECTOR']
+           d['ACCOUNTING_DATA_SELECTOR'] = os.environ['ACCOUNTING_DATA_SELECTOR']
+           
+           # EGI Operations Portal settings 
+           d['OPERATIONS_SERVER_URL'] = os.environ['OPERATIONS_SERVER_URL']
+           d['OPERATIONS_API_KEY'] = os.environ['OPERATIONS_API_KEY']
+           d['OPERATIONS_FORMAT'] = os.environ['OPERATIONS_FORMAT']
+           d['OPERATIONS_VO_LIST_PREFIX'] = os.environ['OPERATIONS_VO_LIST_PREFIX']
+           d['OPERATIONS_VO_ID_CARD_PREFIX'] = os.environ['OPERATIONS_VO_ID_CARD_PREFIX']
+           d['OPERATIONS_VOS_REPORT_PREFIX'] = os.environ['OPERATIONS_VOS_REPORT_PREFIX']
 
-        # Google sheet settings
-        d["SERVICE_ACCOUNT_PATH"] = os.environ["SERVICE_ACCOUNT_PATH"]
-        d["SERVICE_ACCOUNT_FILE"] = os.environ["SERVICE_ACCOUNT_FILE"]
-        d["GOOGLE_SHEET_NAME"] = os.environ["GOOGLE_SHEET_NAME"]
-        d["GOOGLE_CLOUD_WORKSHEET"] = os.environ["GOOGLE_CLOUD_WORKSHEET"]
-        d["GOOGLE_HTC_WORKSHEET"] = os.environ["GOOGLE_HTC_WORKSHEET"]
+           # EGI Jira Portal settings
+           d['JIRA_SERVER_URL'] = os.environ['JIRA_SERVER_URL']
+           d['JIRA_AUTH_TOKEN'] = os.environ['JIRA_AUTH_TOKEN']
+           d['SERVICE_ORDERS_PROJECTKEY'] = os.environ['SERVICE_ORDERS_PROJECTKEY']
+           d['SERVICE_ORDERS_ISSUETYPE'] = os.environ['SERVICE_ORDERS_ISSUETYPE']
+          
+           # GoogleSheet settings
+           d['SERVICE_ACCOUNT_PATH'] = os.environ['SERVICE_ACCOUNT_PATH']
+           d['SERVICE_ACCOUNT_FILE'] = os.environ['SERVICE_ACCOUNT_FILE']
+           d['GOOGLE_SHEET_NAME'] = os.environ['GOOGLE_SHEET_NAME']
+           d['GOOGLE_CLOUD_WORKSHEET'] = os.environ['GOOGLE_CLOUD_WORKSHEET']
+           d['GOOGLE_HTC_WORKSHEET'] = os.environ['GOOGLE_HTC_WORKSHEET']
+           d['GOOGLE_VOS_WORKSHEET'] = os.environ['GOOGLE_VOS_WORKSHEET']
+           d['GOOGLE_SERVICE_ORDERS_WORKSHEET'] = os.environ['GOOGLE_SERVICE_ORDERS_WORKSHEET']
+           d['GOOGLE_VOS_CREATED_WORKSHEET'] = os.environ['GOOGLE_VOS_CREATED_WORKSHEET'] 
 
-        # Generic settings
-        d["LOG"] = os.environ["LOG"]
-        d["DATE_FROM"] = os.environ["DATE_FROM"]
-        d["DATE_TO"] = os.environ["DATE_TO"]
-        d["SSL_CHECK"] = os.environ["SSL_CHECK"]
+           # EGI gtmhub Portal settings 
+           #d['QUANTIVE_SERVER_URL'] = os.environ['QUANTIVE_SERVER_URL']
+           #d['ACCOUNT_ID'] = os.environ['ACCOUNT_ID']
+           #d['TOKEN'] = os.environ['TOKEN']
+           #d['OWNER_ID'] = os.environ['OWNER_ID']
+           #d['PARENT_ID'] = os.environ['PARENT_ID']
+           #d['OWNER_CONTACT'] = os.environ['OWNER_CONTACT']
+           #d['OWNER_EMAIL'] = os.environ['OWNER_EMAIL']
+           #d['TASK_ID'] = os.environ['TASK_ID']
+           #d['ACTION'] = os.environ['ACTION']
+           
+           # Generic settings
+           d['LOG'] = os.environ['LOG']
+           d['DATE_FROM'] = os.environ['DATE_FROM']
+           d['DATE_TO'] = os.environ['DATE_TO']
+           d['SSL_CHECK'] = os.environ['SSL_CHECK']
 
-    except:
-        print(colourise("red", "ERROR: os.environment settings not found!"))
+        except Exception:
+          print(colourise("red", "ERROR: os.environment settings not found!"))
+        
+        return d
 
-    return d
