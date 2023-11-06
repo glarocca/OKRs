@@ -21,10 +21,62 @@ from utils import colourise, highlight, get_env_settings
 
 __author__ = "Giuseppe LA ROCCA"
 __email__ = "giuseppe.larocca@egi.eu"
-__version__ = "$Revision: 0.7"
-__date__ = "$Date: 15/09/2023 18:23:17"
+__version__ = "$Revision: 0.9"
+__date__ = "$Date: 06/11/2023 18:23:17"
 __copyright__ = "Copyright (c) 2023 EGI Foundation"
 __license__ = "Apache Licence v2.0"
+
+
+def get_VOs_report(env):
+    """
+    Returns reports of the list of VOs created and deleted in the reporting period
+    Endpoint:
+     * `/egi-reports/vo`
+    """
+
+    start = (env["DATE_FROM"].replace("/", "-")) + "-01"
+    end = (env["DATE_TO"].replace("/", "-")) + "-01"
+
+    headers = {"Accept": "Application/json", "X-API-Key": env["OPERATIONS_API_KEY"]}
+
+    _url = (
+        env["OPERATIONS_SERVER_URL"]
+        + env["OPERATIONS_VOS_REPORT_PREFIX"]
+        + "/vo?"
+        + "start_date="
+        + start
+        + "&end_date="
+        + end
+        + "&format=json"
+    )
+
+    if env["SSL_CHECK"] == "False":
+        curl = requests.get(url=_url, headers=headers, verify=False)
+    else:
+        curl = requests.get(url=_url, headers=headers)
+
+    response = curl.json()
+    VOs_report = []
+
+    if response:
+        for item in response["report"]:
+            vos = []
+            for vo_list in item["vos"]:
+                if "Pending" in item["status"]:
+                    tmp = " ".join(vo_list["vo"]) + "(PE)"
+                if "Deleted" in item["status"]:
+                    tmp = " ".join(vo_list["vo"]) + "(D)"
+                if "Leaving" in item["status"]:
+                    tmp = " ".join(vo_list["vo"]) + "(L)"
+                if "Production" in item["status"]:
+                    tmp = " ".join(vo_list["vo"]) + "(P)"
+                vos.append(tmp)
+
+            VOs_report.append(
+                {"status": item["status"], "count": item["count"], "vos": vos}
+            )
+
+    return VOs_report
 
 
 def get_VO_metadata(index, env, vo_name):

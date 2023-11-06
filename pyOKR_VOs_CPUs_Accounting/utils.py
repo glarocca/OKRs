@@ -20,8 +20,8 @@ import os
 
 __author__    = "Giuseppe LA ROCCA"
 __email__     = "giuseppe.larocca@egi.eu"
-__version__   = "$Revision: 0.8"
-__date__      = "$Date: 07/10/2023 11:58:27"
+__version__   = "$Revision: 0.9"
+__date__      = "$Date: 03/11/2023 11:58:27"
 __copyright__ = "Copyright (c) 2023 EGI Foundation"
 __license__   = "Apache Licence v2.0"
 
@@ -29,7 +29,7 @@ __license__   = "Apache Licence v2.0"
 def find_difference(activeVOs_1, activeVOs_2):
     ''' Find difference between two strings ''' 
 
-    newVOs_list = []
+    arrivingVOs_list = []
     leavingVOs_list = []
 
     # Splitting strings into list items
@@ -51,19 +51,19 @@ def find_difference(activeVOs_1, activeVOs_2):
         if value in activeVOs_1 and value not in activeVOs_2:
             leavingVOs_list.append(value)
         if value in activeVOs_2 and value not in activeVOs_1:    
-            newVOs_list.append(value)
+            arrivingVOs_list.append(value)
 
     # Convert python list() to str()
-    newVOs_str = ', '.join([str(elem) for elem in newVOs_list])
+    arrivingVOs_str = ', '.join([str(elem) for elem in arrivingVOs_list])
     leavingVOs_str = ', '.join([str(elem) for elem in leavingVOs_list])
 
-    if newVOs_str == "":
-        newVOs_str = "-"
+    if arrivingVOs_str == "":
+        arrivingVOs_str = "-"
 
     if leavingVOs_str == "":
         leavingVOs_str = "-"
 
-    return(newVOs_str, leavingVOs_str)
+    return(arrivingVOs_str, leavingVOs_str)
 
 
 def colourise(colour, text):
@@ -125,40 +125,12 @@ def get_env_settings():
            d['ACCOUNTING_VO_GROUP_SELECTOR'] = os.environ['ACCOUNTING_VO_GROUP_SELECTOR']
            d['ACCOUNTING_DATA_SELECTOR'] = os.environ['ACCOUNTING_DATA_SELECTOR']
            
-           # EGI Operations Portal settings 
-           d['OPERATIONS_SERVER_URL'] = os.environ['OPERATIONS_SERVER_URL']
-           d['OPERATIONS_API_KEY'] = os.environ['OPERATIONS_API_KEY']
-           d['OPERATIONS_FORMAT'] = os.environ['OPERATIONS_FORMAT']
-           d['OPERATIONS_VO_LIST_PREFIX'] = os.environ['OPERATIONS_VO_LIST_PREFIX']
-           d['OPERATIONS_VO_ID_CARD_PREFIX'] = os.environ['OPERATIONS_VO_ID_CARD_PREFIX']
-           d['OPERATIONS_VOS_REPORT_PREFIX'] = os.environ['OPERATIONS_VOS_REPORT_PREFIX']
-
-           # EGI Jira Portal settings
-           d['JIRA_SERVER_URL'] = os.environ['JIRA_SERVER_URL']
-           d['JIRA_AUTH_TOKEN'] = os.environ['JIRA_AUTH_TOKEN']
-           d['SERVICE_ORDERS_PROJECTKEY'] = os.environ['SERVICE_ORDERS_PROJECTKEY']
-           d['SERVICE_ORDERS_ISSUETYPE'] = os.environ['SERVICE_ORDERS_ISSUETYPE']
-          
            # GoogleSheet settings
            d['SERVICE_ACCOUNT_PATH'] = os.environ['SERVICE_ACCOUNT_PATH']
            d['SERVICE_ACCOUNT_FILE'] = os.environ['SERVICE_ACCOUNT_FILE']
            d['GOOGLE_SHEET_NAME'] = os.environ['GOOGLE_SHEET_NAME']
            d['GOOGLE_CLOUD_WORKSHEET'] = os.environ['GOOGLE_CLOUD_WORKSHEET']
            d['GOOGLE_HTC_WORKSHEET'] = os.environ['GOOGLE_HTC_WORKSHEET']
-           d['GOOGLE_VOS_WORKSHEET'] = os.environ['GOOGLE_VOS_WORKSHEET']
-           d['GOOGLE_SERVICE_ORDERS_WORKSHEET'] = os.environ['GOOGLE_SERVICE_ORDERS_WORKSHEET']
-           d['GOOGLE_VOS_CREATED_WORKSHEET'] = os.environ['GOOGLE_VOS_CREATED_WORKSHEET'] 
-
-           # EGI gtmhub Portal settings 
-           #d['QUANTIVE_SERVER_URL'] = os.environ['QUANTIVE_SERVER_URL']
-           #d['ACCOUNT_ID'] = os.environ['ACCOUNT_ID']
-           #d['TOKEN'] = os.environ['TOKEN']
-           #d['OWNER_ID'] = os.environ['OWNER_ID']
-           #d['PARENT_ID'] = os.environ['PARENT_ID']
-           #d['OWNER_CONTACT'] = os.environ['OWNER_CONTACT']
-           #d['OWNER_EMAIL'] = os.environ['OWNER_EMAIL']
-           #d['TASK_ID'] = os.environ['TASK_ID']
-           #d['ACTION'] = os.environ['ACTION']
            
            # Generic settings
            d['LOG'] = os.environ['LOG']

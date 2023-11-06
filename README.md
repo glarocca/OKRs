@@ -8,7 +8,7 @@ the **Objectives and Key Results (OKRs)** goal-setting framework.
 * **HTC CPU/h** consumed by the production VOs of EGI
 * Num. of **'Registered'**, **'Total'** and **'Active'** users of the production
   - Registered users = Number of users registered into the registries (VOMS, COManage, Perun) not necessarily active.
-  - Total users = Number of total users registered in the DB since the 1st capture for a given VO.
+  - Total users = Number of users registered in the DB since the 1st. capture for a given VO.
 * VOs registered in the [EGI Operations Portal](https://operations-portal.egi.eu/)
 * Num. of VOs registered in the [EGI Operations Portal](https://operations-portal.egi.eu/) (in progress)
 * Num. of **Service Orders (SOs)** received from the [EOSC Marketplace](https://marketplace.eosc-portal.eu/)
@@ -67,6 +67,7 @@ This GitHub repository includes clients to generate:
 * [The HTC and Cloud CPU/h of the production VOs of the EGI Federation](pyOKR_VOs_CPUs_Accounting)
 * [The number of users in the production VOs of the EGI Federation](pyOKR_VOs_Users_Accounting)
 * [The number of Services Orders (SOs) received throught the EOSC Marketplace](pyOKR_ServiceOrders_Accounting)
+* [Report of the VOs created/leaving the EGI Operations Portal](pyOKR_VOs_Report)
 
 ## References
 
