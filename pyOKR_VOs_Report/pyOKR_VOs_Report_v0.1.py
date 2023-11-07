@@ -69,11 +69,11 @@ def get_GWorkSheetCellPosition(worksheet, reporting_period):
         return(_cell.row)
     
 
-def update_GWorkSheet(env, worksheet, reporting_period, VOs_report, total):
+def update_GWorkSheet(env, worksheet, reporting_period, VOs_report):
     ''' Update the reporting records in the Google Worksheet '''
 
     # Formatting the header of the worksheet
-    worksheet.format("A1:C1", {
+    worksheet.format("A1:E1", {
       "backgroundColor": {
       "red": 55.0,
       "green": 15.0,
@@ -84,7 +84,7 @@ def update_GWorkSheet(env, worksheet, reporting_period, VOs_report, total):
     })
 
     # Formatting the cells of the worksheet
-    worksheet.format("A2:C100", {
+    worksheet.format("A2:E100", {
       "horizontalAlignment": "RIGHT",
       "textFormat": { "fontSize": 11 }
     })
@@ -93,10 +93,25 @@ def update_GWorkSheet(env, worksheet, reporting_period, VOs_report, total):
     # Convert dt to string in dd-mm-yyyy HH:MM:SS
     timestamp = dt.strftime("%d-%m-%Y %H:%M:%S")
 
+    total = 0
+    total_deleted = 0
+    total_production = 0
+    for VO in VOs_report:
+        total = total + int(VO['count'])
+        for value in VO.items():
+            if "Deleted" in value:
+                total_deleted = int(VO['count'])
+                #print("Deleted VOs: %d" %total_deleted)
+
+            if "Production" in value:
+                total_production = int(VO['count'])
+                #print("Production VOs: %d" %total_production)
+
+
     # Convert list() to string
     VOs_string = ', '.join([str(elem['vos']) for elem in VOs_report])
 
-    flag = False # Accounting period not found in the GSpreadsheet
+    flag = False # Reporting period not found in the GSpreadsheet
     worksheet_dicts = worksheet.get_all_records()
     for item in worksheet_dicts:
         if (item['Period'] == reporting_period):
@@ -107,11 +122,16 @@ def update_GWorkSheet(env, worksheet, reporting_period, VOs_report, total):
            # Updating the total number of VOs in the reporting period
            worksheet.update_cell(cell.row, cell.col + 1, total)
            
-           # List of active VOs
+           # Updating the total number of VOs with Status = 'Deleted' in the reporting period
+           worksheet.update_cell(cell.row, cell.col + 2, total_deleted)
+           # Updating the total number of VOs with Status = 'Production' in the reporting period
+           worksheet.update_cell(cell.row, cell.col + 3, total_production)
+           
+           # Update the VOs report
            if VOs_string:
-              worksheet.update_cell(cell.row, cell.col + 2, VOs_string)
+              worksheet.update_cell(cell.row, cell.col + 4, VOs_string)
            else:
-              worksheet.update_cell(cell.row, cell.col + 2, '-')
+              worksheet.update_cell(cell.row, cell.col + 4, '-')
 
            print(colourise("cyan", "[INFO]"), \
            " Updated the VOs reports for the reporting period: %s" %reporting_period)
@@ -157,11 +177,7 @@ def main():
        print(colourise("green", "\n[LOG]"), \
        "  List of VOs creation and deletion during the reporting period \n%s" %json.dumps(VOs_report, indent=4))
 
-    total = 0
-    for item in VOs_report:
-        total = total + int(item['count'])
-
-    update_GWorkSheet(env, worksheet, reporting_period, VOs_report, total)
+    update_GWorkSheet(env, worksheet, reporting_period, VOs_report)
         
  
 if __name__ == "__main__":
