@@ -29,15 +29,19 @@ we will have to create a **Google Service Account**.
 
 **Instructions** to create a Google Service Account are the following:
 
-* Head over to [Google developer console](https://console.developers.google.com/) and click on **Create Project**
+* Head over to [Google developer console](https://console.cloud.google.com/)
+* Click on **Create Project** to create a new project
 * Fill in the required fields and click on **Create**
-* Click on **Enable API and Services**
-* Search for Google Drive API and click on **Enable**
-* Search for the Google Sheets API and click on **Enable**
-* Click on **Create Credentials**
-* Select **Google Drive API** as the API and Web server
-* Name the service account, then grant it a **Project** role with **Editor** access
-* Click on **Continue**
+* From the APIs & Services menu, click on **Enable API and Services**
+* Search for "Google Drive API" and click on **Enable**
+* Search for the "Google Sheets API" and click on **Enable**
+* From the APIs & Services menu, click on **Credentials**
+* From the "Credentials" menu, click on **Create Credentials** to create a new credentials account
+* From the Credentials account, select **Service Account**
+* Fill in the web form providing the name of the Service account name and click on "Create" and Continue
+* Skip the step 3 to grant users access to this service account.
+* Click on **Done**
+* Once the Service Account has been created, click on **Keys** and click on "Add new Keys" and select JSON
 * The credentials will be created and downloaded as a JSON file
 * Copy the JSON file to your code directory and rename it to `credentials.json`
 
