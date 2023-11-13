@@ -15,11 +15,6 @@
 #  limitations under the License.
 #
 
-# Install requirements:
-# ]$ pip3 install gspread
-# Google Credentials: python-google-sheet-service-ac@striped-rhino-395008.iam.gserviceaccount.com
-# Google spread-sheet: https://docs.google.com/spreadsheets/d/1B1Sqf1UiN9pY_fGbWe5G1zKA2UzsekOVbLCtiiMFAXk/edit#
-
 import datetime
 import gspread
 import json
