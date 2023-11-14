@@ -15,10 +15,6 @@
 #  limitations under the License.
 #
 
-# Install requirements:
-# ]$ pip3 install gspread
-# Google spread-sheet: https://docs.google.com/spreadsheets/d/1B1Sqf1UiN9pY_fGbWe5G1zKA2UzsekOVbLCtiiMFAXk/edit#
-
 import datetime
 import gspread
 import json
@@ -33,7 +29,7 @@ from utils import colourise, highlight, get_env_settings
 __author__ = "Giuseppe LA ROCCA"
 __email__ = "giuseppe.larocca@egi.eu"
 __version__ = "$Revision: 0.5"
-__date__ = "$Date: 15/09/2023 18:23:17"
+__date__ = "$Date: 14/11/2023 18:23:17"
 __copyright__ = "Copyright (c) 2023 EGI Foundation"
 __license__ = "Apache Licence v2.0"
 
