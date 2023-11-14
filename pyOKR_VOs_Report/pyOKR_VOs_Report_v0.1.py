@@ -142,7 +142,9 @@ def update_GWorkSheet(env, worksheet, reporting_period, VOs_report):
            get_GWorkSheetCellPosition(worksheet, reporting_period)))
           
            body = [reporting_period, 
-                   total, 
+                   total,
+                   total_deleted,
+                   total_production,
                    VOs_string]
 
            index = get_GWorkSheetCellPosition(worksheet, reporting_period)
