@@ -39,11 +39,12 @@ we will have to create a **Google Service Account**.
 * From the "Credentials" menu, click on **Create Credentials** to create a new credentials account
 * From the Credentials account, select **Service Account**
 * Fill in the web form providing the name of the Service account name and click on "Create" and Continue
-* Skip the step 3 to grant users access to this service account.
+* Skip the step 3 to grant users access to this service account
 * Click on **Done**
 * Once the Service Account has been created, click on **Keys** and click on "Add new Keys" and select JSON
 * The credentials will be created and downloaded as a JSON file
 * Copy the JSON file to your code directory and rename it to `credentials.json`
+* Grant **Edit** rights to the **Service Account** in the Google Spread-sheet
 
 ## Configuring the environment
 
