@@ -112,7 +112,7 @@ export DATE_TO="2020/03"
 Source the environment settings and run the client
 
 ```bash
-]$ source openrc.sh && python3 pyVOs_CPUs_Accounting_v0.2.py
+]$ source openrc.sh && python3 pyVOs_CPUs_Accounting_v0.6.py
 
 Log Level = INFO
 
