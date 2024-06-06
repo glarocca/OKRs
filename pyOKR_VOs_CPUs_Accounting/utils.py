@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 #
-#  Copyright 2023 EGI Foundation
+#  Copyright 2024 EGI Foundation
 # 
 #  Licensed under the Apache License, Version 2.0 (the "License");
 #  you may not use this file except in compliance with the License.
@@ -20,8 +20,8 @@ import os
 
 __author__    = "Giuseppe LA ROCCA"
 __email__     = "giuseppe.larocca@egi.eu"
-__version__   = "$Revision: 0.9"
-__date__      = "$Date: 03/11/2023 11:58:27"
+__version__   = "$Revision: 1.0"
+__date__      = "$Date: 06/06/2024 11:58:27"
 __copyright__ = "Copyright (c) 2023 EGI Foundation"
 __license__   = "Apache Licence v2.0"
 
@@ -33,8 +33,15 @@ def find_difference(activeVOs_1, activeVOs_2):
     leavingVOs_list = []
 
     # Splitting strings into list items
-    activeVOs_1 = activeVOs_1.split(", ")
-    activeVOs_2 = activeVOs_2.split(", ")
+    if activeVOs_1:
+        activeVOs_1 = activeVOs_1.split(", ")
+    else:   
+        activeVOs_1 = ""
+
+    if activeVOs_2:
+        activeVOs_2 = activeVOs_2.split(", ")
+    else:
+        activeVOs_2 = ""
 
     # Store string list items in set
     A = set(activeVOs_1)
