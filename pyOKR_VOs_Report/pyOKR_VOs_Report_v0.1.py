@@ -16,14 +16,14 @@
 #
 
 import datetime
-import json
-import warnings
-
 import gspread
+import json
 import requests
+import warnings
 
 warnings.filterwarnings("ignore")
 
+from gspreadutils import init_GWorkSheet
 from operationsutils import get_VOs_report
 from utils import colourise, find_difference, get_env_settings
 
@@ -35,38 +35,26 @@ __copyright__ = "Copyright (c) 2023 EGI Foundation"
 __license__   = "Apache Licence v2.0"
 
 
-def init_GWorkSheet(env):
-    ''' Initialise the GWorkSheet settings and return the worksheet '''
-
-    # Get the service account
-    account = gspread.service_account(env['SERVICE_ACCOUNT_FILE'])
-    # Open the GoogleSheet
-    sheet = account.open(env['GOOGLE_SHEET_NAME'])
-    worksheet = sheet.worksheet(env['GOOGLE_VOS_REPORT_WORKSHEET'])
-
-    return(worksheet)
-
-
 def get_GWorkSheetCellPosition(worksheet, reporting_period):
     ''' Get the cell coordinates where to add the new reporting period '''
 
-    _cell = _cell2 = ""
-    flag = False
+    found = False
+    pos = 2
 
-    worksheet_dicts = worksheet.get_all_records()
-    for worksheet_dict in worksheet_dicts:
-        cell = worksheet.find(worksheet_dict['Period'])
-        if worksheet_dict['Period'] < reporting_period:
-            _cell2 = cell.row
-        else:
-            _cell = cell
-            flag = True
-            break
+    values_list = worksheet.col_values(1)
 
-    if not flag:
-        return (_cell2+1)
-    else:    
-        return(_cell.row)
+    if len(values_list) > 1:
+       for header in values_list:
+           if ("Period" not in header):
+
+              if (header == accounting_period) or (header == ""):
+                 found = True
+                 break
+
+              if header < accounting_period:
+                 pos = pos + 1
+
+    return(pos, found)
     
 
 def update_GWorkSheet(env, worksheet, reporting_period, VOs_report):
@@ -137,9 +125,9 @@ def update_GWorkSheet(env, worksheet, reporting_period, VOs_report):
            " Updated the VOs reports for the reporting period: %s" %reporting_period)
            
     if not flag:
+           accounting_period_pos, found_position = get_GWorkSheetCellPosition(worksheet, accounting_period)
            print(colourise("cyan", "\n[INFO]"), \
-           " Adding reporting period: %s at row: %s" %(reporting_period, \
-           get_GWorkSheetCellPosition(worksheet, reporting_period)))
+           " Adding reporting period: %s at row: %s" %(reporting_period, reporting_period_pos))
           
            body = [reporting_period, 
                    total,
@@ -148,7 +136,7 @@ def update_GWorkSheet(env, worksheet, reporting_period, VOs_report):
                    VOs_string]
 
            index = get_GWorkSheetCellPosition(worksheet, reporting_period)
-           worksheet.insert_row(body, index=index, inherit_from_before=True)
+           worksheet.insert_row(body, index=accounting_report_pos, inherit_from_before=True)
            
            print(colourise("cyan", "[INFO]"), \
            " Updated the VOs reports for the reporting period: %s" %reporting_period)
