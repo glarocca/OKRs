@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 #
-#  Copyright 2023 EGI Foundation
+#  Copyright 2024 EGI Foundation
 #
 #  Licensed under the Apache License, Version 2.0 (the "License");
 #  you may not use this file except in compliance with the License.
@@ -20,9 +20,9 @@ import os
 
 __author__ = "Giuseppe LA ROCCA"
 __email__ = "giuseppe.larocca@egi.eu"
-__version__ = "$Revision: 0."
-__date__ = "$Date: 07/10/2023 11:58:27"
-__copyright__ = "Copyright (c) 2023 EGI Foundation"
+__version__ = "$Revision: 1.0"
+__date__ = "$Date: 07/10/2024 11:58:27"
+__copyright__ = "Copyright (c) 2024 EGI Foundation"
 __license__ = "Apache Licence v2.0"
 
 
