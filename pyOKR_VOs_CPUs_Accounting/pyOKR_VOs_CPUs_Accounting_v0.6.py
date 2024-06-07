@@ -22,6 +22,7 @@ import requests
 import warnings
 warnings.filterwarnings("ignore")
 
+from gspreadutils import init_GWorkSheet
 from utils import colourise, find_difference, get_env_settings
 
 __author__    = "Giuseppe LA ROCCA"
@@ -30,40 +31,6 @@ __version__   = "$Revision: 0.6"
 __date__      = "$Date: 02/06/2024 10:50:22"
 __copyright__ = "Copyright (c) 2024 EGI Foundation"
 __license__   = "Apache Licence v2.0"
-
-
-def init_GWorkSheet(env):
-    ''' Initialise the GWorkSheet settings and return the worksheet '''
-
-    try:
-        # Get the service account
-        account = gspread.service_account(env['SERVICE_ACCOUNT_FILE'])
-    
-        # Open the GoogleSheet
-        sheet = account.open(env['GOOGLE_SHEET_NAME'])
-    
-        # Open the proper Worksheet based on the SCOPE
-        if (env['ACCOUNTING_SCOPE'] == "cloud"):
-           worksheet = sheet.worksheet(env['GOOGLE_CLOUD_WORKSHEET'])
-        else:
-           worksheet = sheet.worksheet(env['GOOGLE_HTC_WORKSHEET'])
-
-    except FileNotFoundError as error:
-        print(colourise("red", "[ABORT]"), \
-              "The env['SERVICE_ACCOUNT_FILE'] setting was *NOT FOUND*")
-        print("\tPlease check environmental settings and try again!")
-
-    except gspread.exceptions.SpreadsheetNotFound as error:
-        print(colourise("red", "[ABORT]"), \
-              "The env['GOOGLE_SHEET_NAME'] setting was *NOT FOUND*")
-        print("\tPlease check environmental settings and try again!")
-
-    except gspread.exceptions.WorksheetNotFound as error:
-        print(colourise("red", "[ABORT]"), \
-              "The env['GOOGLE_CLOUD_WORKSHEET'] or env['GOOGLE_HTC_WORKSHEET'] setting were *NOT FOUND*")
-        print("\tPlease check environmental settings and try again!")    
-
-    return(worksheet)
 
 
 def connect(env):
