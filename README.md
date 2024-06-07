@@ -70,6 +70,7 @@ Install the library `gspread` with pip3:
 This GitHub repository includes clients to generate:
 
 * [The HTC and Cloud CPU/h of the production VOs of the EGI Federation](pyOKR_VOs_CPUs_Accounting)
+* [The SLA HTC and Cloud CPU/h of the production VOs of the EGI Federation](pyOKR_VOs_CPUs_SLAs_Accounting)
 * [The number of users in the production VOs of the EGI Federation](pyOKR_VOs_Users_Accounting)
 * [The number of Services Orders (SOs) received throught the EOSC Marketplace](pyOKR_ServiceOrders_Accounting)
 * [Report of the VOs created/leaving the EGI Operations Portal](pyOKR_VOs_Report)
