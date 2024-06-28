@@ -76,8 +76,8 @@ def get_GWorkSheetCellPosition(worksheet, accounting_period):
               if header < accounting_period:
                  pos = pos + 1
 
-    return(pos, found) 
-
+    return(pos, found)
+    
 
 def update_GWorkSheet(env, worksheet, accounting_period, total_cpu, noVOsCPUs, totalVOCPUs, VOs_list):
     ''' Update the accounting records in the Google Worksheet '''
@@ -109,7 +109,7 @@ def update_GWorkSheet(env, worksheet, accounting_period, total_cpu, noVOsCPUs, t
 
     flag = False # Accounting period not found in the GSpreadsheet
     worksheet_dicts = worksheet.get_all_records()
-
+    
     for item in worksheet_dicts:
         if (item['Period'] == accounting_period):
            
@@ -154,15 +154,18 @@ def update_GWorkSheet(env, worksheet, accounting_period, total_cpu, noVOsCPUs, t
               print("Updated the Total Cloud CPU/h for the reporting period: %s" %accounting_period)
            else:   
               print("Updated the Total HTC CPU/h for the reporting period: %s" %accounting_period)
-           
+
     if not flag:
            accounting_period_pos, found_position = get_GWorkSheetCellPosition(worksheet, accounting_period)
-           print("Adding %s at row: %s" %(accounting_period, accounting_period_pos))
+           print("Adding %s at row: %s" %(accounting_period, accounting_period_pos)) 
           
            if (accounting_period_pos > 2):
-               result = find_difference(
+               newVOs_str, leavingVOs_str = find_difference(
                   worksheet.cell(accounting_period_pos, 4).value,
                   worksheet.cell(accounting_period_pos - 1, 4).value)
+
+               result = "APPEARED: " + newVOs_str + "\n" \
+               "DISAPPEARED: " + leavingVOs_str
 
                body = [accounting_period, 
                        total_cpu, 
