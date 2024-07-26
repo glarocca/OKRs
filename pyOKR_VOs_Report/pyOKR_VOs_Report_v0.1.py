@@ -47,11 +47,11 @@ def get_GWorkSheetCellPosition(worksheet, reporting_period):
        for header in values_list:
            if ("Period" not in header):
 
-              if (header == accounting_period) or (header == ""):
+              if (header == reporting_period) or (header == ""):
                  found = True
                  break
 
-              if header < accounting_period:
+              if header < reporting_period:
                  pos = pos + 1
 
     return(pos, found)
@@ -125,7 +125,7 @@ def update_GWorkSheet(env, worksheet, reporting_period, VOs_report):
            " Updated the VOs reports for the reporting period: %s" %reporting_period)
            
     if not flag:
-           accounting_period_pos, found_position = get_GWorkSheetCellPosition(worksheet, accounting_period)
+           reporting_period_pos, found_position = get_GWorkSheetCellPosition(worksheet, reporting_period)
            print(colourise("cyan", "\n[INFO]"), \
            " Adding reporting period: %s at row: %s" %(reporting_period, reporting_period_pos))
           
@@ -136,7 +136,7 @@ def update_GWorkSheet(env, worksheet, reporting_period, VOs_report):
                    VOs_string]
 
            index = get_GWorkSheetCellPosition(worksheet, reporting_period)
-           worksheet.insert_row(body, index=accounting_report_pos, inherit_from_before=True)
+           worksheet.insert_row(body, index=reporting_period_pos, inherit_from_before=True)
            
            print(colourise("cyan", "[INFO]"), \
            " Updated the VOs reports for the reporting period: %s" %reporting_period)
