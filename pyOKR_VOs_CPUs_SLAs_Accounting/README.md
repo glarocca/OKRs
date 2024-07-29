@@ -74,7 +74,7 @@ export DATE_TO="2024/06"
 Source the environment settings and run the client
 
 ```bash
-]$ source openrc.sh && python3 pyVOs_CPUs_SLAs_Accounting_v0.1.py
+]$ source openrc.sh && python3 pyVOs_CPUs_SLAs_Accounting_v0.2.py
 
 Log Level = DEBUG
 
@@ -91,6 +91,9 @@ Log Level = DEBUG
     "GOOGLE_SHEET_NAME": "OKR_Reports",
     "GOOGLE_SLAs_CLOUD_WORKSHEET": "Accounting SLAs Cloud CPU/h",
     "GOOGLE_SLAs_HTC_WORKSHEET": "Accounting SLAs HTC CPU/h",
+    "GOOGLE_SLAs_SHEET_NAME": "EGI_VOs_SLAs_OLAs_dashboard",
+    "GOOGLE_SLAs_WORKSHEET": "SLAs",
+    "VOs_FILE": "VOs.json",
     "LOG": "DEBUG",
     "DATE_FROM": "2024/04",
     "DATE_TO": "2024/06",

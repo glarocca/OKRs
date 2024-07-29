@@ -22,7 +22,7 @@ import requests
 import warnings
 warnings.filterwarnings("ignore")
 
-from gspreadutils import init_GWorkSheet
+from gspreadutils import init_GWorkSheet, init_SLAs_GWorkSheet
 from utils import colourise, get_env_settings
 
 __author__    = "Giuseppe LA ROCCA"
@@ -117,12 +117,11 @@ def get_vo_cell(worksheet, vo_name):
     return(vo_name_pos)  
 
 
-def update_GWorkSheet(env, worksheet, accounting_period_pos, vo_name_pos, total_cpu):
+def update_GWorkSheet(env, worksheet, accounting_period_pos, vo_name_pos, total_vo_cpu):
     ''' Update the accounting records in the Google Worksheet '''
 
-    # Update the Google Worksheet cell (with the 'Num. of users' in the reporting period)
-    worksheet.update_cell(accounting_period_pos, vo_name_pos, total_cpu)
-
+    # Update the Google Worksheet cell (with the 'CPU/h' in the reporting period)
+    worksheet.update_cell(accounting_period_pos, vo_name_pos, total_vo_cpu)
 
     if env['ACCOUNTING_SCOPE'] == "cloud":
        print(colourise("green", "[INFO]"), \
@@ -131,6 +130,60 @@ def update_GWorkSheet(env, worksheet, accounting_period_pos, vo_name_pos, total_
        print(colourise("green", "[INFO]"), \
              "Updated the total HTC CPU/h for the VO")
 
+
+def getting_SLAs_metadata(env, SLAs_worksheet):
+    ''' Retrieve the metadata of the active SLAs '''
+
+    # Get the full list of the Customers 
+    customers = SLAs_worksheet.get_all_values()
+
+    vos = []
+
+    if len(customers) > 1:
+       for customer in customers:
+           vo = []
+           if ("Customer" not in customer):
+              if ("FINALIZED" in customer[4]) and (customer[7] != ""):
+                 if customer[10] and customer[14]:
+                    vo = {
+                        "Customer": customer[0],     
+                        "Name": customer[8],
+                        "CPU/h": 0,
+                        "Approval": customer[7],     
+                        "SLA_start": customer[5],     
+                        "SLA_end": customer[6],     
+                        "Active": "Y",     
+                        "Type": "egi, cloud"
+                    } 
+                 elif customer[10]:
+                    vo = {
+                        "Customer": customer[0],
+                        "Name": customer[8],        
+                        "CPU/h": 0,
+                        "Approval": customer[7],
+                        "SLA_start": customer[5],        
+                        "SLA_end": customer[6], 
+                        "Active": "Y",                
+                        "Type": "egi"
+                    } 
+                 elif customer[14]:
+                    vo = {
+                        "Customer": customer[0],
+                        "Name": customer[8],
+                        "CPU/h": 0,
+                        "Approval": customer[7],
+                        "SLA_start": customer[5],
+                        "SLA_end": customer[6],
+                        "Active": "Y",
+                        "Type": "cloud"
+                    }
+                    
+           if len(vo) > 0:
+               vos.append(vo) 
+     
+    # Saving active SLAs with metadata
+    with open(env['VOs_FILE'], 'w', encoding='utf-8') as f:
+         json.dump(vos, f, ensure_ascii=False, indent=4)
 
 
 def main():
@@ -154,6 +207,12 @@ def main():
 
     # Initialise the GWorkSheet
     worksheet = init_GWorkSheet(env)
+    SLAs_worksheet = init_SLAs_GWorkSheet(env)
+
+    print(colourise("cyan", "\n[INFO]"), " Update metadata of running SLAs in progress...")
+
+    # Getting start_date, end_date of the active SLAs from the EGI_VOs_SLAs_OLAs_dashboard
+    getting_SLAs_metadata(env, SLAs_worksheet)
 
     # Formatting the header of the worksheet
     worksheet.format("A1:C1", {
@@ -192,65 +251,73 @@ def main():
     print("\tThis operation may take few minutes to complete. Please wait!")
 
     # Load VOs metadata in JSON format
-    VOs_file = open("VOs.json")
+    VOs_file = open(env['VOs_FILE'])
     VOs = json.load(VOs_file)
 
-    for VO_items in VOs:
-        for vo_details in VO_items['vos']:
-            for details in vo_details['vo']:
-                if (env['ACCOUNTING_SCOPE'] in details['Type']) and \
-                   (env['DATE_FROM'] >= details['SLA_start']) and \
-                   (env['DATE_TO'] <= details['SLA_end']) and \
-                   details['Active'] == "Y":
-                   _url, data = get_accounting_data(env, details['Name'])
-                   
-                   try:
-                       if data:
-                           print(colourise("cyan", "\n[INFO]"), \
-                           " Fetching the accounting records for the VO [%s] in progress..." %details['Name'].upper())
+    for vo_details in VOs:
+        if (env['ACCOUNTING_SCOPE'] in vo_details['Type']) and \
+           (env['DATE_FROM'] >= vo_details['SLA_start']) and \
+           (env['DATE_TO'] <= vo_details['SLA_end']) and \
+            vo_details['Active'] == "Y":
+            _url, data = get_accounting_data(env, vo_details['Name'])
+
+            try:
+                if data:
+                    print(colourise("cyan", "\n[INFO]"), \
+                    " Fetching the accounting records for the VO [%s] in progress..." %vo_details['Name'].upper())
                   
-                           if "DEBUG" in env['LOG']:
-                               print(_url, data)
+                    if "DEBUG" in env['LOG']:
+                       print(_url, data)
                        
-                           for record in data:
-                               if "Percent" not in record['id'] and "Total" not in record['id']:
-                                   print("- Provider: %s; CPU/h: %s" %(record['id'], format(record['Total'],"7,d")))
-                               if "Total" in record['id']:
-                                   if "cloud" in env['ACCOUNTING_SCOPE']:
-                                       print("- Total Cloud CPU/h = %s" %format(record['Total'],"7,d"))
-                                   else:
-                                       print("- Total HTC CPU/h = %s" %format(record['Total'],"7,d"))
+                    for record in data:
+                        if "Percent" not in record['id'] and "Total" not in record['id']:
+                            print("- Provider: %s; CPU/h: %s" %(record['id'], format(record['Total'],"7,d")))
+                        if "Total" in record['id']:
+                            if "cloud" in env['ACCOUNTING_SCOPE']:
+                                print("- Total Cloud CPU/h = %s" %format(record['Total'],"7,d"))
+                            else:
+                                print("- Total HTC CPU/h = %s" %format(record['Total'],"7,d"))
 
-                                   details['CPU/h'] = (int(details['CPU/h']) + record['Total'])
-                                   total_cpu = total_cpu + record['Total']
+                            vo_details['CPU/h'] = (int(vo_details['CPU/h']) + record['Total'])
+                            total_cpu = total_cpu + record['Total']
 
-                                   # 2.) Check whether the 'vo_name' is already in the headers of the gspread
-                                   vo_name_pos = get_vo_cell(worksheet, details['Name'])
+                            # 2.) Check whether the 'vo_name' is already in the headers of the gspread
+                            vo_name_pos = get_vo_cell(worksheet, vo_details['Name'])
                                    
-                                   #Update the CPU/h for the given VO in the gspread
-                                   update_GWorkSheet(env, 
-                                           worksheet, 
-                                           accounting_period_pos, 
-                                           vo_name_pos,
-                                           format(record['Total'],"7,d"))
+                            #Update the CPU/h for the given VO in the gspread
+                            update_GWorkSheet(env, 
+                                    worksheet, 
+                                    accounting_period_pos, 
+                                    vo_name_pos,
+                                    format(record['Total'],"7,d"))
 
-                   except (KeyError):
-                       pass
+            except (KeyError):
+                pass
 
     total_cpu = format(total_cpu,"7,d")                   
 
     print(colourise("green", "\n[REPORT]"))
     if "cloud" in env['ACCOUNTING_SCOPE']:
-       print("- Cloud CPU/h consumed by the EGI Scientific Communities")
+       print("- Cloud CPU/h consumed by the EGI SLAs")
        print("- Reporting period = %s - %s" %(env['DATE_FROM'], env['DATE_TO']))
        print("- Total = %s Cloud CPU/h" %total_cpu.strip())
     else:
-       print("- HTC CPU/h consumed by the EGI Scientific Communities")
+       print("- HTC CPU/h consumed by the EGI SLAs")
        print("- Reporting period = %s - %s" %(env['DATE_FROM'], env['DATE_TO']))
        print("- Total = %s HTC CPU/h" %total_cpu.strip())
 
+    # Update the Total CPU/h consumed in the reporting period
+    total_cell = worksheet.find("TOTAL")
+    update_GWorkSheet(env,
+            worksheet,
+            accounting_period_pos,
+            total_cell.col,
+            total_cpu.strip())
+
     # Update the timestamp of the last update
-    #worksheet.insert_note("A1","Last update on: " + timestamp)  
+    worksheet.insert_note("A1","Last update on: " + timestamp)  
+
+
 
 if __name__ == "__main__":
         main()

@@ -29,6 +29,40 @@ __copyright__ = "Copyright (c) 2024 EGI Foundation"
 __license__   = "Apache Licence v2.0"
 
 
+def init_SLAs_GWorkSheet(env):
+    ''' Initialise the GWorkSheet settings and return the worksheet '''
+
+    worksheet = ""
+
+    try:
+        # Get the service account
+        account = gspread.service_account(env['SERVICE_ACCOUNT_FILE'])
+        
+        # Open the GoogleSheet
+        sheet = account.open(env['GOOGLE_SLAs_SHEET_NAME'])
+    
+        worksheet = sheet.worksheet(env['GOOGLE_SLAs_WORKSHEET'])
+
+    except FileNotFoundError as error:
+        print(colourise("red", "[ABORT]"), \
+              "The env['SERVICE_ACCOUNT_FILE'] setting was *NOT FOUND*")
+        print("\tPlease check environmental settings and try again!")
+        
+    except gspread.exceptions.SpreadsheetNotFound as error:
+        print(colourise("red", "[ABORT]"), \
+              "The env['GOOGLE_SLAs_SHEET_NAME'] setting was *NOT FOUND*")
+        print("\tPlease check environmental settings and try again!")
+    
+    except gspread.exceptions.WorksheetNotFound as error:
+        print(colourise("red", "[ABORT]"), \
+              "The env['GOOGLE_SLAs_WORKSHEET'] setting was *NOT FOUND*")
+        print("\tPlease check environmental settings and try again!")
+    
+    
+    return(worksheet)
+
+
+
 def init_GWorkSheet(env):
     ''' Initialise the GWorkSheet settings and return the worksheet '''
 
