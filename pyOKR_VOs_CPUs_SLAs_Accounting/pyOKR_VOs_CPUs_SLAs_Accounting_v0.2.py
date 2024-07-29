@@ -97,7 +97,7 @@ def get_vo_cell(worksheet, vo_name):
               if (header == vo_name) or (header == ""):
                  found = True
                  break
-              if header < vo_name:
+              else:
                  vo_name_pos = vo_name_pos + 1
     
     if not found:
@@ -112,7 +112,7 @@ def get_vo_cell(worksheet, vo_name):
     
     else:   
        print(colourise("green", "[INFO]"), \
-            "The vo '%s' is *already* in the gspread" %vo_name)
+             "The vo '%s' is *already* in the gspread at position: %s" %(vo_name, str(vo_name_pos)))
 
     return(vo_name_pos)  
 
@@ -212,7 +212,7 @@ def main():
     print(colourise("cyan", "\n[INFO]"), " Update metadata of running SLAs in progress...")
 
     # Getting start_date, end_date of the active SLAs from the EGI_VOs_SLAs_OLAs_dashboard
-    getting_SLAs_metadata(env, SLAs_worksheet)
+    #getting_SLAs_metadata(env, SLAs_worksheet)
 
     # Formatting the header of the worksheet
     worksheet.format("A1:C1", {
