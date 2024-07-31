@@ -58,6 +58,11 @@ export GOOGLE_SHEET_NAME="OKR_Reports"
 export GOOGLE_SLAs_HTC_WORKSHEET="Accounting SLAs HTC CPU/h"
 export GOOGLE_SLAs_CLOUD_WORKSHEET="Accounting SLAs Cloud CPU/h"
 
+export GOOGLE_SLAs_SHEET_NAME="EGI_VOs_SLAs_OLAs_dashboard"
+export GOOGLE_SLAs_WORKSHEET="SLAs"
+
+export VOs_FILE="VOs.json"
+
 # LOG=INFO, no verbose logging is 'OFF'
 # LOG=DEBUG, verbose logging is 'ON'
 #export LOG="INFO"
@@ -162,6 +167,11 @@ export GOOGLE_SHEET_NAME="OKR_Reports"
 export GOOGLE_SLAs_HTC_WORKSHEET="Accounting SLAs HTC CPU/h"
 export GOOGLE_SLAs_CLOUD_WORKSHEET="Accounting SLAs Cloud CPU/h"
 
+export GOOGLE_SLAs_SHEET_NAME="EGI_VOs_SLAs_OLAs_dashboard"
+export GOOGLE_SLAs_WORKSHEET="SLAs"
+
+export VOs_FILE="VOs.json"
+
 # LOG=INFO, no verbose logging is 'OFF'
 # LOG=DEBUG, verbose logging is 'ON'
 #export LOG="INFO"
@@ -193,6 +203,9 @@ Log Level = DEBUG
     "GOOGLE_SHEET_NAME": "OKR_Reports",
     "GOOGLE_SLAs_CLOUD_WORKSHEET": "Accounting SLAs Cloud CPU/h",
     "GOOGLE_SLAs_HTC_WORKSHEET": "Accounting SLAs HTC CPU/h",
+    "GOOGLE_SLAs_SHEET_NAME": "EGI_VOs_SLAs_OLAs_dashboard",
+    "GOOGLE_SLAs_WORKSHEET": "SLAs",
+    "VOs_FILE": "VOs.json",
     "LOG": "DEBUG",
     "DATE_FROM": "2024/04",
     "DATE_TO": "2024/06",
