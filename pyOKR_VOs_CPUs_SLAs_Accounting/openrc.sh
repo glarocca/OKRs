@@ -13,7 +13,7 @@ export ACCOUNTING_SCOPE="cloud" # for Cloud Compute
 # 'sum_elap_processors', 'mem-GByte', 'vm_num', 'sum_elap', 'cost', 'net_in', 'net_out', 'disk', 'processors'
 export ACCOUNTING_METRIC="sum_elap_processors"
 
-# Available metrics (for scope=grid):
+# Available metrics (for scope=egi):
 # 'elap_processors', 'njobs', 'normcpu', 'sumcpu', 'normelap', 'normelap_processors', 'sumelap', 'cpueff'
 #export ACCOUNTING_METRIC="elap_processors"
 
@@ -26,8 +26,8 @@ export ACCOUNTING_VO_GROUP_SELECTOR="egi"
 # Available Data Selector: 'JSON', 'CSV'
 export ACCOUNTING_DATA_SELECTOR="JSON"
 
-export DATE_FROM="2024/07"
-export DATE_TO="2024/09"
+export DATE_FROM="2025/01"
+export DATE_TO="2025/02"
 
 ###########################################################
 # G O O G L E ** S P R E A D S H E E T ** S E T T I N G S #
@@ -40,8 +40,9 @@ export GOOGLE_SLAs_CLOUD_WORKSHEET="Accounting SLAs Cloud CPU/h"
 
 export GOOGLE_SLAs_SHEET_NAME="EGI_VOs_SLAs_OLAs_dashboard"
 export GOOGLE_SLAs_WORKSHEET="SLAs"
+export GOOGLE_OLAs_WORKSHEET="OLAs"
 
-export VOs_FILE="VOs.json"
+export ACTIVE_SLAs_FILE="VOs.json"
 
 # LOG=INFO, no verbose logging is 'OFF'
 # LOG=DEBUG, verbose logging is 'ON'

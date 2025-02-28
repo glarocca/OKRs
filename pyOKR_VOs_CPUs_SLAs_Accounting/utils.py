@@ -141,8 +141,9 @@ def get_env_settings():
            
            d['GOOGLE_SLAs_SHEET_NAME'] = os.environ['GOOGLE_SLAs_SHEET_NAME']
            d['GOOGLE_SLAs_WORKSHEET'] = os.environ['GOOGLE_SLAs_WORKSHEET']
+           d['GOOGLE_OLAs_WORKSHEET'] = os.environ['GOOGLE_OLAs_WORKSHEET']
            
-           d['VOs_FILE'] = os.environ['VOs_FILE']
+           d['ACTIVE_SLAs_FILE'] = os.environ['ACTIVE_SLAs_FILE']
 
            # Generic settings
            d['LOG'] = os.environ['LOG']

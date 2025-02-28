@@ -1,360 +1,332 @@
 [
-  {
-     "vos": [
-     {
-	     "vo": [
-                 {
-                   "Customer": "BELLE-II",
-		   "Name": "belle",
-                   "CPU/h": "0",
-                   "Approval": "2020/10",
-                   "SLA_start": "2020/10",
-                   "SLA_end": "2024/11",
-                   "Active": "Y",
-                   "Type": "cloud"
-                 },	
-                 {
-                   "Customer": "LSGC",
-                   "Name": "biomed",
-                   "CPU/h": "0",
-                   "Approval": "2016/09",
-		   "SLA_start": "2016/05",
-		   "SLA_end": "2024/06",
-                   "Active": "Y",
-                   "Type": "cloud"
-                 },
-                 {
-                   "Customer": "EUreka3D",
-                   "Name": "culturalheritage.vo.egi.eu",
-                   "CPU/h": "0",
-                   "Approval": "2024/03",
-		   "SLA_start": "2024/03",
-		   "SLA_end": "2024/12",
-                   "Active": "Y",
-                   "Type": "cloud"
-                 },		 
-                 {
-                   "Customer": "EISCAT_3D",
-                   "Name": "eiscat.se",
-                   "CPU/h": "0",
-                   "Approval": "2021/07",
-		   "SLA_start": "2021/05",
-		   "SLA_end": "2024/11",
-                   "Active": "Y",
-                   "Type": "cloud"
-                 },		 		 
-	         {
-                   "Customer": "WeNMR",
-                   "Name": "enmr.eu",
-                   "CPU/h": "0",
-                   "Approval": "2016/02",
-		   "SLA_start": "2016/01",
-		   "SLA_end": "2025/06",
-                   "Active": "Y",
-                   "Type": "cloud"
-                 },
-                 {
-                   "Customer": "Prominence",
-                   "Name": "fusion",
-                   "CPU/h": "0",
-                   "Approval": "2019/07",
-		   "SLA_start": "2019/08",
-		   "SLA_end": "2024/06",
-                   "Active": "Y",
-                   "Type": "cloud"
-                 },
-                 {
-                   "Customer": "Terradue",
-                   "Name": "geohazards.terradue.com",
-                   "CPU/h": "0",
-                   "Approval": "2016/06",
-		   "SLA_start": "2016/06",
-		   "SLA_end": "2023/06",
-                   "Active": "N",
-                   "Type": "cloud"
-                 },
-                 {
-                   "Customer": "IceCube",
-                   "Name": "icecube",
-                   "CPU/h": "0",
-                   "Approval": "2022/08",
-                   "SLA_start": "2022/01",
-                   "SLA_end": "2024/06",
-                   "Active": "Y",
-                   "Type": "cloud"
-                 },
-                 {
-                   "Customer": "MATRYCS",
-                   "Name": "vo.matrycs.eu",
-                   "CPU/h": "0",
-                   "Approval": "2022/09",
-		   "SLA_start": "",
-		   "SLA_end": "",
-                   "Active": "N",
-                   "Type": "cloud"
-                 },		 
-                 {
-                   "Customer": "OpenRiskNet",
-                   "Name": "openrisknet.org",
-                   "CPU/h": "0",
-                   "Approval": "2021/05",
-		   "SLA_start": "2021/03",
-		   "SLA_end": "2024/06",
-                   "Active": "Y",
-                   "Type": "cloud"
-                 },
-                 {
-                   "Customer": "Perovskite",
-                   "Name": "perla-pv.ro",
-                   "CPU/h": "0",
-                   "Approval": "2021/08",
-		   "SLA_start": "2021/08",
-		   "SLA_end": "2024/06",
-                   "Active": "Y",
-                   "Type": "cloud"
-                 },		 
-                 {
-                   "Customer": "CLARIN-ERIC",
-                   "Name": "vo.clarin.eu",
-                   "CPU/h": "0",
-                   "Approval": "2018/10",
-		   "SLA_start": "2018/11",
-		   "SLA_end": "2024/12",
-                   "Active": "Y",
-                   "Type": "cloud"
-                 },
-                 {
-                   "Customer": "DECIDO",
-                   "Name": "vo.decido-project.eu",
-                   "CPU/h": "0",
-                   "Approval": "2024/02",
-		   "SLA_start": "2022/06",
-		   "SLA_end": "2026/12",
-                   "Active": "Y",
-                   "Type": "cloud"
-                 },
-                 {
-                   "Customer": "DIGITbrain",
-                   "Name": "vo.digitbrain.eu",
-                   "CPU/h": "0",
-                   "Approval": "2021/01",
-		   "SLA_start": "2021/01",
-		   "SLA_end": "2023/12",
-                   "Active": "Y",
-                   "Type": "cloud"
-                 },		 
-	         {	 
-                   "Customer": "EMSO-ERIC",
-                   "Name": "vo.emso-eric.eu",
-                   "CPU/h": "0",
-                   "Approval": "2019/11",
-		   "SLA_start": "2019/12",
-		   "SLA_end": "2023/06",
-                   "Active": "Y",
-                   "Type": "cloud"
-                 },
-                 {
-                   "Customer": "AI4PublicPolicy",
-                   "Name": "vo.ai4publicpolicy.eu",
-                   "CPU/h": "0",
-                   "Approval": "2024/03",
-		   "SLA_start": "2022/01",
-		   "SLA_end": "2024/08",
-                   "Active": "Y",
-                   "Type": "cloud"
-                 },
-                 {
-                   "Customer": "EMPHASIS",
-                   "Name": "vo.emphasisproject.eu",
-                   "CPU/h": "0",
-                   "Approval": "2020/03",
-		   "SLA_start": "2022/01",
-		   "SLA_end": "2024/08",
-                   "Active": "Y",
-                   "Type": "cloud"
-                 },
-                 {
-                   "Customer": "ENES",
-                   "Name": "vo.enes.org",
-                   "CPU/h": "0",
-                   "Approval": "2021/11",
-		   "SLA_start": "2021/05",
-		   "SLA_end": "2027/03",
-                   "Active": "Y",
-                   "Type": "cloud"
-                 },
-                 {
-                   "Customer": "ENVRI-FAIR",
-                   "Name": "vo.envrihub.eu",
-                   "CPU/h": "0",
-                   "Approval": "2022/07",
-		   "SLA_start": "2022/07",
-		   "SLA_end": "2027/01",
-                   "Active": "Y",
-                   "Type": "cloud"
-                 },		
-                 {
-                   "Customer": "ERIES",
-                   "Name": "vo.eries.eu",
-                   "CPU/h": "0",
-                   "Approval": "2023/11",
-		   "SLA_start": "2023/11",
-		   "SLA_end": "2028/12",
-                   "Active": "Y",
-                   "Type": "cloud"
-                 },		
-                 {
-                   "Customer": "Marine Institute",
-                   "Name": "vo.eurosea.marine.ie",
-                   "CPU/h": "0",
-                   "Approval": "2023/11",
-		   "SLA_start": "2023/12",
-		   "SLA_end": "2024/11",
-                   "Active": "Y",
-                   "Type": "cloud"
-                 },		 
-                 {
-                   "Customer": "GEO-DAB",
-                   "Name": "vo.geoss.eu",
-                   "CPU/h": "0",
-                   "Approval": "2018/12",
-		   "SLA_start": "2018/12",
-		   "SLA_end": "2024/06",
-                   "Active": "Y",
-                   "Type": "cloud"
-                 },
-                 {
-                   "Customer": "LETHE",
-                   "Name": "vo.lethe-project.eu",
-                   "CPU/h": "0",
-                   "Approval": "2023/04",
-		   "SLA_start": "2021/11",
-		   "SLA_end": "2024/12",
-                   "Active": "Y",
-                   "Type": "cloud"
-                 },		 
-                 {
-                   "Customer": "NBIS",
-                   "Name": "vo.nbis.se",
-                   "CPU/h": "0",
-                   "Approval": "2015/11",
-		   "SLA_start": "2015/12",
-		   "SLA_end": "2024/12",
-                   "Active": "Y",
-                   "Type": "cloud"
-                 },
-                 {
-                   "Customer": "OBSEA",
-                   "Name": "vo.obsea.es",
-                   "CPU/h": "0",
-                   "Approval": "2019/05",
-		   "SLA_start": "2019/05",
-		   "SLA_end": "2024/06",
-                   "Active": "Y",
-                   "Type": "cloud"
-                 },		
-                 {
-                   "Customer": "OpenBioMaps",
-                   "Name": "vo.openbiomaps.org",
-                   "CPU/h": "0",
-                   "Approval": "2020/01",
-		   "SLA_start": "2020/01",
-		   "SLA_end": "2024/06",
-                   "Active": "Y",
-                   "Type": "cloud"
-                 },		 
-                 {
-                   "Customer": "OPERAS-ERIC",
-                   "Name": "vo.operas-eu.org",
-                   "CPU/h": "0",
-                   "Approval": "2021/04",
-		   "SLA_start": "2021/01",
-		   "SLA_end": "2029/12",
-                   "Active": "Y",
-                   "Type": "cloud"
-                 },
-                 {
-                   "Customer": "Pangeo",
-                   "Name": "vo.pangeo.eu",
-                   "CPU/h": "0",
-                   "Approval": "2023/02",
-		   "SLA_start": "2023/03",
-		   "SLA_end": "2027/06",
-                   "Active": "Y",
-                   "Type": "cloud"
-                 },
-                 {
-                   "Customer": "PITHIA",
-                   "Name": "vo.pithia.eu",
-                   "CPU/h": "0",
-                   "Approval": "2022/05",
-		   "SLA_start": "2022/06",
-		   "SLA_end": "2025/03",
-                   "Active": "Y",
-                   "Type": "cloud"
-                 },
-                 {
-                   "Customer": "PRIMAGE",
-                   "Name": "vo.primage.eu",
-                   "CPU/h": "0",
-                   "Approval": "2022/06",
-		   "SLA_start": "2022/11",
-		   "SLA_end": "2025/06",
-                   "Active": "Y",
-                   "Type": "cloud"
-                 },		 
-                 {
-                   "Customer": "CNR-ITB",
-                   "Name": "vo.radiotracers4psma.eu",
-                   "CPU/h": "0",
-                   "Approval": "2024/03",
-		   "SLA_start": "2024/01",
-		   "SLA_end": "2024/12",
-                   "Active": "Y",
-                   "Type": "cloud"
-                 },		 
-                 {
-                   "Customer": "Blue-Cloud 2026",
-                   "Name": "vo.seadatanet.org",
-                   "CPU/h": "0",
-                   "Approval": "2023/11",
-		   "SLA_start": "2023/10",
-		   "SLA_end": "2026/06",
-                   "Active": "Y",
-                   "Type": "cloud"
-                 },
-                 {
-                   "Customer": "UseGalaxy",
-                   "Name": "vo.usegalaxy.eu",
-                   "CPU/h": "0",
-                   "Approval": "2023/09",
-		   "SLA_start": "2023/07",
-		   "SLA_end": "2025/08",
-                   "Active": "Y",
-                   "Type": "cloud"
-                 },		 
-		 {
-                   "Customer": "LSGC",
-                   "Name": "biomed",
-                   "CPU/h": "0",
-                   "Approval": "2016/09",
-		   "SLA_start": "2016/05",
-		   "SLA_end": "2024/06",
-                   "Active": "Y",
-                   "Type": "egi"
-                 },
-                 {
-                   "Customer": "WeNMR",
-                   "Name": "enmr.eu",
-                   "CPU/h": "0",
-                   "Approval": "2016/02",
-		   "SLA_start": "2016/01",
-		   "SLA_end": "2025/06",
-                   "Active": "Y",
-                   "Type": "egi"
-                 }		 
-	     ]      
-     }
-     ]
-}
+    {
+        "Customer": "BELLE- II",
+        "Name": "belle",
+        "CPU/h": 0,
+        "Approval": "21/11/2020",
+        "SLA_start": "01 Oct 2020",
+        "SLA_end": "31 Oct 2025",
+        "Providers": "N/A",
+        "Active": "Y",
+        "Type": "cloud"
+    },
+    {
+        "Customer": "DECIDO",
+        "Name": "vo.decido-project.eu",
+        "CPU/h": 0,
+        "Approval": "13/02/2024",
+        "SLA_start": "01 Jun 2022",
+        "SLA_end": "31 Dec 2026",
+        "Providers": "N/A",
+        "Active": "Y",
+        "Type": "cloud"
+    },
+    {
+        "Customer": "EISCAT_3D",
+        "Name": "eiscat.se",
+        "CPU/h": 0,
+        "Approval": "01/07/2021",
+        "SLA_start": "01 May 2021",
+        "SLA_end": "30 Nov 2025",
+        "Providers": "N/A",
+        "Active": "Y",
+        "Type": "cloud"
+    },
+    {
+        "Customer": "EMPHASIS",
+        "Name": "vo.emphasisproject.eu",
+        "CPU/h": 0,
+        "Approval": "17/03/2020",
+        "SLA_start": "01 Jan 2020",
+        "SLA_end": "31 Oct 2025",
+        "Providers": "N/A",
+        "Active": "Y",
+        "Type": "cloud"
+    },
+    {
+        "Customer": "ENES",
+        "Name": "vo.enes.org",
+        "CPU/h": 0,
+        "Approval": "12/11/2021",
+        "SLA_start": "25 May 2021",
+        "SLA_end": "31 Mar 2027",
+        "Providers": "N/A",
+        "Active": "Y",
+        "Type": "cloud"
+    },
+    {
+        "Customer": "ENVRI-Hub NEXT",
+        "Name": "vo.envrihub.eu",
+        "CPU/h": 0,
+        "Approval": "01/07/2022",
+        "SLA_start": "01 Jul 2022",
+        "SLA_end": "31 Jan 2027",
+        "Providers": "N/A",
+        "Active": "Y",
+        "Type": "cloud"
+    },
+    {
+        "Customer": "ERIES",
+        "Name": "vo.eries.eu",
+        "CPU/h": 0,
+        "Approval": "28/11/2023",
+        "SLA_start": "27 Nov 2023",
+        "SLA_end": "31 Dec 2028",
+        "Providers": "N/A",
+        "Active": "Y",
+        "Type": "cloud"
+    },
+    {
+        "Customer": "EUreka3D",
+        "Name": "culturalheritage.vo.egi.eu",
+        "CPU/h": 0,
+        "Approval": "22/03/2024",
+        "SLA_start": "30 March 2023",
+        "SLA_end": "31 Dec 2027",
+        "Providers": "N/A",
+        "Active": "Y",
+        "Type": "cloud"
+    },
+    {
+        "Customer": "EURO-ARGO ERIC",
+        "Name": "vo.euro-argo.eu",
+        "CPU/h": 0,
+        "Approval": "26/11/2024",
+        "SLA_start": "01 December 2024",
+        "SLA_end": "30 Nov 2025",
+        "Providers": "N/A",
+        "Active": "Y",
+        "Type": "cloud"
+    },
+    {
+        "Customer": "Euro-BioImaging ERIC",
+        "Name": "vo.eurobioimaging.eu",
+        "CPU/h": 0,
+        "Approval": "25/02/2025",
+        "SLA_start": "01 March 2025",
+        "SLA_end": "01 Mar 2026",
+        "Providers": "N/A",
+        "Active": "Y",
+        "Type": "cloud"
+    },
+    {
+        "Customer": "EuroScienceGateway",
+        "Name": "vo.usegalaxy.eu",
+        "CPU/h": 0,
+        "Approval": "05/09/2023",
+        "SLA_start": "12 July 2023",
+        "SLA_end": "31 Aug 2025",
+        "Providers": "N/A",
+        "Active": "Y",
+        "Type": "cloud"
+    },
+    {
+        "Customer": "GEO-DAB",
+        "Name": "vo.geoss.eu",
+        "CPU/h": 0,
+        "Approval": "17/12/2018",
+        "SLA_start": "01 Dec 2018",
+        "SLA_end": "30 Jun 2025",
+        "Providers": "N/A",
+        "Active": "Y",
+        "Type": "cloud"
+    },
+    {
+        "Customer": "IceCube",
+        "Name": "icecube",
+        "CPU/h": 0,
+        "Approval": "01/08/2022",
+        "SLA_start": "01 Jan 2022",
+        "SLA_end": "30 Jun 2025",
+        "Providers": "N/A",
+        "Active": "Y",
+        "Type": "cloud"
+    },
+    {
+        "Customer": "LETHE",
+        "Name": "vo.lethe-project.eu ",
+        "CPU/h": 0,
+        "Approval": "28/04/2023",
+        "SLA_start": "10 Nov 2021",
+        "SLA_end": "31 Dec 2024",
+        "Providers": "N/A",
+        "Active": "Y",
+        "Type": "cloud"
+    },
+    {
+        "Customer": "LSGC",
+        "Name": "biomed",
+        "CPU/h": 0,
+        "Approval": "16/09/2016",
+        "SLA_start": "01 May 2016",
+        "SLA_end": "30 Jun 2025",
+        "Providers": "N/A",
+        "Active": "Y",
+        "Type": "egi, cloud"
+    },
+    {
+        "Customer": "Marine Institute",
+        "Name": "vo.eurosea.marine.ie",
+        "CPU/h": 0,
+        "Approval": "30/11/2023",
+        "SLA_start": "01 Dec 2023",
+        "SLA_end": "30 Nov 2025",
+        "Providers": "N/A",
+        "Active": "Y",
+        "Type": "cloud"
+    },
+    {
+        "Customer": "NBIS/BILS",
+        "Name": "vo.nbis.se",
+        "CPU/h": 0,
+        "Approval": "30/11/2015",
+        "SLA_start": "01 Dec 2015",
+        "SLA_end": "01 Dec 2025",
+        "Providers": "N/A",
+        "Active": "Y",
+        "Type": "cloud"
+    },
+    {
+        "Customer": "Neurodesk",
+        "Name": "vo.neurodesk.eu",
+        "CPU/h": 0,
+        "Approval": "10/07/2024",
+        "SLA_start": "01 July 2024",
+        "SLA_end": "21 Jun 2025",
+        "Providers": "N/A",
+        "Active": "Y",
+        "Type": "cloud"
+    },
+    {
+        "Customer": "OBSEA",
+        "Name": "vo.obsea.es",
+        "CPU/h": 0,
+        "Approval": "21/05/2019",
+        "SLA_start": "01 April 2019",
+        "SLA_end": "30 Jun 2025",
+        "Providers": "N/A",
+        "Active": "Y",
+        "Type": "cloud"
+    },
+    {
+        "Customer": "OpenBioMap",
+        "Name": "vo.openbiomaps.org",
+        "CPU/h": 0,
+        "Approval": "01/09/2021",
+        "SLA_start": "01 Jan 2020",
+        "SLA_end": "30 Jun 2025",
+        "Providers": "N/A",
+        "Active": "Y",
+        "Type": "cloud"
+    },
+    {
+        "Customer": "OPERAS",
+        "Name": "vo.operas-eu.org",
+        "CPU/h": 0,
+        "Approval": "01/04/2021",
+        "SLA_start": "01 Jan 2021",
+        "SLA_end": "31 Dec 2029",
+        "Providers": "N/A",
+        "Active": "Y",
+        "Type": "cloud"
+    },
+    {
+        "Customer": "Pangeo",
+        "Name": "vo.pangeo.eu",
+        "CPU/h": 0,
+        "Approval": "17/02/2023",
+        "SLA_start": "01 Mar 2022",
+        "SLA_end": "30 Jun 2027",
+        "Providers": "N/A",
+        "Active": "Y",
+        "Type": "cloud"
+    },
+    {
+        "Customer": "Perovskite",
+        "Name": "perla-pv.ro",
+        "CPU/h": 0,
+        "Approval": "13/08/2021",
+        "SLA_start": "23 Aug 2021",
+        "SLA_end": "30 Jun 2025",
+        "Providers": "N/A",
+        "Active": "Y",
+        "Type": "cloud"
+    },
+    {
+        "Customer": "PITHIA-NFR",
+        "Name": "vo.pithia.eu",
+        "CPU/h": 0,
+        "Approval": "31/05/2022",
+        "SLA_start": "01 Jun 2022",
+        "SLA_end": "21 Mar 2025",
+        "Providers": "N/A",
+        "Active": "Y",
+        "Type": "cloud"
+    },
+    {
+        "Customer": "PSMA (CNR/ITB)",
+        "Name": "vo.radiotracers4psma.eu",
+        "CPU/h": 0,
+        "Approval": "26/03/2024",
+        "SLA_start": "01 Jan 2024",
+        "SLA_end": "31 Dec 2025",
+        "Providers": "N/A",
+        "Active": "Y",
+        "Type": "cloud"
+    },
+    {
+        "Customer": "SeaDataNet/Blue-Cloud-2026",
+        "Name": "vo.seadatanet.org",
+        "CPU/h": 0,
+        "Approval": "23/11/2023",
+        "SLA_start": "01 Nov 2023",
+        "SLA_end": "30 Jun 2026",
+        "Providers": "N/A",
+        "Active": "Y",
+        "Type": "cloud"
+    },
+    {
+        "Customer": "WeNMR",
+        "Name": "enmr.eu",
+        "CPU/h": 0,
+        "Approval": "18/02/2016",
+        "SLA_start": "01 Jan 2016",
+        "SLA_end": "30 Jun 2025",
+        "Providers": "N/A",
+        "Active": "Y",
+        "Type": "egi, cloud"
+    },
+    {
+        "Customer": "EGI AoD",
+        "Name": "vo.access.egi.eu",
+        "CPU/h": 0,
+        "Approval": "",
+        "SLA_start": "18 Mar 2016",
+        "SLA_end": "31 Dec 2025",
+        "Providers": "N/A",
+        "Active": "Y",
+        "Type": "cloud"
+    },
+    {
+        "Customer": "EGI Training",
+        "Name": "training.egi.eu",
+        "CPU/h": 0,
+        "Approval": "",
+        "SLA_start": "1 Apr 2016",
+        "SLA_end": "31 Dec 2025",
+        "Providers": "N/A",
+        "Active": "Y",
+        "Type": "cloud"
+    },
+    {
+        "Customer": "EGI Notebooks",
+        "Name": "vo.notebooks.egi.eu",
+        "CPU/h": 0,
+        "Approval": "",
+        "SLA_start": "5 Jun 2019",
+        "SLA_end": "31 Dec 2026",
+        "Providers": "N/A",
+        "Active": "Y",
+        "Type": "cloud"
+    }
 ]

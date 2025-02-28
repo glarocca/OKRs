@@ -32,7 +32,7 @@ __license__   = "Apache Licence v2.0"
 def init_SLAs_GWorkSheet(env):
     ''' Initialise the GWorkSheet settings and return the worksheet '''
 
-    worksheet = ""
+    SLAs_worksheet = OLAs_worksheet = ""
 
     try:
         # Get the service account
@@ -41,7 +41,8 @@ def init_SLAs_GWorkSheet(env):
         # Open the GoogleSheet
         sheet = account.open(env['GOOGLE_SLAs_SHEET_NAME'])
     
-        worksheet = sheet.worksheet(env['GOOGLE_SLAs_WORKSHEET'])
+        SLAs_worksheet = sheet.worksheet(env['GOOGLE_SLAs_WORKSHEET'])
+        OLAs_worksheet = sheet.worksheet(env['GOOGLE_OLAs_WORKSHEET'])
 
     except FileNotFoundError as error:
         print(colourise("red", "[ABORT]"), \
@@ -59,7 +60,7 @@ def init_SLAs_GWorkSheet(env):
         print("\tPlease check environmental settings and try again!")
     
     
-    return(worksheet)
+    return(SLAs_worksheet, OLAs_worksheet)
 
 
 

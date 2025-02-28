@@ -27,8 +27,8 @@ from utils import colourise, get_env_settings
 
 __author__    = "Giuseppe LA ROCCA"
 __email__     = "giuseppe.larocca@egi.eu"
-__version__   = "$Revision: 0.6"
-__date__      = "$Date: 31/05/2024 10:50:22"
+__version__   = "$Revision: 0.7"
+__date__      = "$Date: 31/07/2024 10:50:22"
 __copyright__ = "Copyright (c) 2024 EGI Foundation"
 __license__   = "Apache Licence v2.0"
 
@@ -134,62 +134,87 @@ def update_GWorkSheet(env, worksheet, accounting_period_pos, vo_name_pos, total_
 def getting_SLAs_metadata(env, SLAs_worksheet):
     ''' Retrieve the metadata of the active SLAs '''
 
+    print(colourise("green", "\n[%s]" %env['LOG']), "Fetching the active *SLAs* in progress...")
+    print("\tThis operation may take few minutes to complete. Please wait!")
+
     # Get the full list of the Customers 
     customers = SLAs_worksheet.get_all_values()
 
-    vos = []
+    VOs = []         
 
-    if len(customers) > 1:
-       for customer in customers:
-           vo = []
-           if ("Customer" not in customer):
-              if ("FINALIZED" in customer[4]) and (customer[7] != ""):
-                 if customer[10] and customer[14]:
-                    vo = {
-                        "Customer": customer[0],     
-                        "Name": customer[8],
-                        "CPU/h": 0,
-                        "Approval": customer[7],     
-                        "SLA_start": customer[5],     
-                        "SLA_end": customer[6],     
-                        "Active": "Y",     
-                        "Type": "egi, cloud"
-                    } 
-                 elif customer[10]:
-                    vo = {
-                        "Customer": customer[0],
-                        "Name": customer[8],        
-                        "CPU/h": 0,
-                        "Approval": customer[7],
-                        "SLA_start": customer[5],        
-                        "SLA_end": customer[6], 
-                        "Active": "Y",                
-                        "Type": "egi"
-                    } 
-                 elif customer[14]:
-                    vo = {
-                        "Customer": customer[0],
-                        "Name": customer[8],
-                        "CPU/h": 0,
-                        "Approval": customer[7],
-                        "SLA_start": customer[5],
-                        "SLA_end": customer[6],
-                        "Active": "Y",
-                        "Type": "cloud"
-                    }
-                    
-           if len(vo) > 0:
-               vos.append(vo) 
-     
+    values = SLAs_worksheet.get_all_values()
+    for value in values:
+        if ("VO name" not in value[9]): #and \
+           #("vo.access.egi.eu" not in value[9]) and \
+           #("training.egi.eu" not in value[9]) and \
+           #("vo.notebooks.egi.eu" not in value[9]):
+            if value[5] and "FINALIZED" in value[5]:
+               if value[9] and value[11] and not value[15]:
+                  VOs.append({
+                     "Customer": value[0],
+                     "Name": value[9],
+                     "CPU/h": 0,
+                     "Approval": value[8],
+                     "SLA_start": value[6],
+                     "SLA_end": value[7],
+                     "Providers": "N/A",
+                     "Active": "Y",
+                     "Type": "egi"
+                  })
+               if value[9] and not value[11] and value[15]:
+                  VOs.append({
+                     "Customer": value[0],
+                     "Name": value[9],
+                     "CPU/h": 0,
+                     "Approval": value[8],
+                     "SLA_start": value[6],
+                     "SLA_end": value[7],
+                     "Providers": "N/A",
+                     "Active": "Y",
+                     "Type": "cloud"
+                  })
+
+               elif value[9] and value[11] and value[15]:
+                  VOs.append({
+                     "Customer": value[0],
+                     "Name": value[9],
+                     "CPU/h": 0,
+                     "Approval": value[8],
+                     "SLA_start": value[6],
+                     "SLA_end": value[7],
+                     "Providers": "N/A",
+                     "Active": "Y",
+                     "Type": "egi, cloud"
+                  }) 
+
+    #print(json.dumps(VOs, indent=4))
+
     # Saving active SLAs with metadata
-    with open(env['VOs_FILE'], 'w', encoding='utf-8') as f:
-         json.dump(vos, f, ensure_ascii=False, indent=4)
+    with open(env['ACTIVE_SLAs_FILE'], 'w', encoding='utf-8') as f:
+         json.dump(VOs, f, ensure_ascii=False, indent=4)
+
+
+
+def get_providers(env, customer, OLAs_worksheet):
+    ''' Get the list of provider(s) supporting the given Customer '''
+
+    providers_list = []
+    total = 0
+
+    # Get the list of provider(s) supporting the given Customer 
+    providers = OLAs_worksheet.findall(customer)
+
+    for provider in providers:
+        provider_hostname = OLAs_worksheet.cell(provider.row, 2).value
+        providers_list.append(provider_hostname)
+        total = total + 1
+
+    providers_string = ', '.join(providers_list)
+    return(total, providers_string)
+
 
 
 def main():
-
-    # Initialise the environment settings
-    total_cpu = 0
 
     dt = datetime.datetime.now()
     # Convert dt to string in dd-mm-yyyy HH:MM:SS
@@ -207,12 +232,14 @@ def main():
 
     # Initialise the GWorkSheet
     worksheet = init_GWorkSheet(env)
-    SLAs_worksheet = init_SLAs_GWorkSheet(env)
-
-    print(colourise("cyan", "\n[INFO]"), " Update metadata of running SLAs in progress...")
+    SLAs_worksheet, OLAs_worksheet = init_SLAs_GWorkSheet(env)
 
     # Getting start_date, end_date of the active SLAs from the EGI_VOs_SLAs_OLAs_dashboard
-    #getting_SLAs_metadata(env, SLAs_worksheet)
+    print(colourise("cyan", "\n[INFO]"), " Retrieve metadata of running SLAs in progress...")
+    getting_SLAs_metadata(env, SLAs_worksheet)
+
+    VOs_file = open(env['ACTIVE_SLAs_FILE'])
+    VOs = json.load(VOs_file)
 
     # Formatting the header of the worksheet
     worksheet.format("A1:C1", {
@@ -250,16 +277,15 @@ def main():
     "Downloading accounting records from the EGI Accouting Portal in progress...")
     print("\tThis operation may take few minutes to complete. Please wait!")
 
-    # Load VOs metadata in JSON format
-    VOs_file = open(env['VOs_FILE'])
-    VOs = json.load(VOs_file)
-
+    total_cpu = 0
+    
     for vo_details in VOs:
         if (env['ACCOUNTING_SCOPE'] in vo_details['Type']) and \
            (env['DATE_FROM'] >= vo_details['SLA_start']) and \
            (env['DATE_TO'] <= vo_details['SLA_end']) and \
             vo_details['Active'] == "Y":
             _url, data = get_accounting_data(env, vo_details['Name'])
+            #total, providers = get_providers(env, vo_details['Customer'], OLAs_worksheet)
 
             try:
                 if data:
@@ -271,12 +297,14 @@ def main():
                        
                     for record in data:
                         if "Percent" not in record['id'] and "Total" not in record['id']:
-                            print("- Provider: %s; CPU/h: %s" %(record['id'], format(record['Total'],"7,d")))
+                            print("- Resource Centre: %s; CPU/h: %s" %(record['id'], format(record['Total'],"7,d")))
                         if "Total" in record['id']:
                             if "cloud" in env['ACCOUNTING_SCOPE']:
                                 print("- Total Cloud CPU/h = %s" %format(record['Total'],"7,d"))
                             else:
                                 print("- Total HTC CPU/h = %s" %format(record['Total'],"7,d"))
+
+                            #print("- Providers (%d): %s " %(total, providers))
 
                             vo_details['CPU/h'] = (int(vo_details['CPU/h']) + record['Total'])
                             total_cpu = total_cpu + record['Total']
