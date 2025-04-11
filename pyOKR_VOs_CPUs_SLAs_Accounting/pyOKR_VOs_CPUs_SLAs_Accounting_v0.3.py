@@ -38,13 +38,14 @@ def get_accounting_data(env, vo_name):
     ''' Connecting to the EGI Accounting Portal '''
 
     data = ""
-    _url = "%s/%s/%s/REGION/Year/%s/%s/custom-%s/%s/%s/" %(env['ACCOUNTING_SERVER_URL'], 
+    _url = "%s/%s/%s/REGION/Year/%s/%s/custom-%s/%s/%s/%s/" %(env['ACCOUNTING_SERVER_URL'], 
             env['ACCOUNTING_SCOPE'],
             env['ACCOUNTING_METRIC'],
             env['DATE_FROM'], 
             env['DATE_TO'],
             vo_name,
             env['ACCOUNTING_LOCAL_JOB_SELECTOR'],
+            env['ACCOUNTING_DATA_SELECTOR'],
             env['ACCOUNTING_DATA_SELECTOR'])
 
     headers = { "Accept": "Application/json" }
