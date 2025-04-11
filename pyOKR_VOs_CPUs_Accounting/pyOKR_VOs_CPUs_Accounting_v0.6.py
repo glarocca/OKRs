@@ -36,13 +36,14 @@ __license__   = "Apache Licence v2.0"
 def connect(env):
     ''' Connecting to the EGI Accounting Portal '''
     
-    _url = "%s/%s/%s/VO/DATE/%s/%s/%s/%s/%s/" %(env['ACCOUNTING_SERVER_URL'], 
+    _url = "%s/%s/%s/VO/DATE/%s/%s/%s/%s/%s/%s/" %(env['ACCOUNTING_SERVER_URL'], 
             env['ACCOUNTING_SCOPE'],
             env['ACCOUNTING_METRIC'],
             env['DATE_FROM'], 
             env['DATE_TO'],
             env['ACCOUNTING_VO_GROUP_SELECTOR'],
             env['ACCOUNTING_LOCAL_JOB_SELECTOR'],
+            env['ACCOUNTING_DATA_SELECTOR'],
             env['ACCOUNTING_DATA_SELECTOR'])
 
     headers = { "Accept": "Application/json" }
@@ -50,7 +51,7 @@ def connect(env):
     if env['LOG'] == "DEBUG":
         print(colourise("cyan", "\n[INFO]"), \
               "- Fetching accounting records from: %s" %env['ACCOUNTING_SERVER_URL'])
-    
+
     curl = requests.get(url=_url, headers=headers, verify=True)
     data = curl.json()
 
