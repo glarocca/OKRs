@@ -80,7 +80,7 @@ export DATE_TO="2025/02"
 Source the environment settings and run the client
 
 ```bash
-]$ source openrc.sh && python3 pyVOs_CPUs_SLAs_Accounting_v0.3.py
+]$ source openrc.sh && python3 pyVOs_CPUs_SLAs_Accounting_v0.4.py
 
 Log Level = DEBUG
 
@@ -319,7 +319,7 @@ export DATE_TO="2025/02"
 Source the environment settings and run the client
 
 ```bash
-]$ source openrc.sh && python3 pyOKR_VOs_CPUs_SLAs_Accounting_v0.3.py 
+]$ source openrc.sh && python3 pyOKR_VOs_CPUs_SLAs_Accounting_v0.4.py 
 
 Log Level = DEBUG
 

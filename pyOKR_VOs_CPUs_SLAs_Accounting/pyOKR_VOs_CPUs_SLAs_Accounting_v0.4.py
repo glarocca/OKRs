@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 #
-#  Copyright 2024 EGI Foundation
+#  Copyright 2025 EGI Foundation
 #
 #  Licensed under the Apache License, Version 2.0 (the "License");
 #  you may not use this file except in compliance with the License.
@@ -27,9 +27,9 @@ from utils import colourise, get_env_settings
 
 __author__    = "Giuseppe LA ROCCA"
 __email__     = "giuseppe.larocca@egi.eu"
-__version__   = "$Revision: 0.7"
-__date__      = "$Date: 31/07/2024 10:50:22"
-__copyright__ = "Copyright (c) 2024 EGI Foundation"
+__version__   = "$Revision: 0.4"
+__date__      = "$Date: 17/04/2025 10:50:22"
+__copyright__ = "Copyright (c) 2025 EGI Foundation"
 __license__   = "Apache Licence v2.0"
 
 
@@ -145,44 +145,44 @@ def getting_SLAs_metadata(env, SLAs_worksheet):
 
     values = SLAs_worksheet.get_all_values()
     for value in values:
-        if ("VO name" not in value[9]): #and \
-           #("vo.access.egi.eu" not in value[9]) and \
-           #("training.egi.eu" not in value[9]) and \
-           #("vo.notebooks.egi.eu" not in value[9]):
-            if value[5] and "FINALIZED" in value[5]:
-               if value[9] and value[11] and not value[15]:
+        if ("VO name" not in value[10]): #and \
+           #("vo.access.egi.eu" not in value[10]) and \
+           #("training.egi.eu" not in value[10]) and \
+           #("vo.notebooks.egi.eu" not in value[10]):
+            if value[6] and "FINALIZED" in value[6]:
+               if value[10] and value[12] and not value[16]:
                   VOs.append({
                      "Customer": value[0],
-                     "Name": value[9],
+                     "Name": value[10],
                      "CPU/h": 0,
-                     "Approval": value[8],
-                     "SLA_start": value[6],
-                     "SLA_end": value[7],
+                     "Approval": value[9],
+                     "SLA_start": value[7],
+                     "SLA_end": value[8],
                      "Providers": "N/A",
                      "Active": "Y",
                      "Type": "egi"
                   })
-               if value[9] and not value[11] and value[15]:
+               if value[10] and not value[12] and value[16]:
                   VOs.append({
                      "Customer": value[0],
-                     "Name": value[9],
+                     "Name": value[10],
                      "CPU/h": 0,
-                     "Approval": value[8],
-                     "SLA_start": value[6],
-                     "SLA_end": value[7],
+                     "Approval": value[9],
+                     "SLA_start": value[7],
+                     "SLA_end": value[8],
                      "Providers": "N/A",
                      "Active": "Y",
                      "Type": "cloud"
                   })
 
-               elif value[9] and value[11] and value[15]:
+               elif value[10] and value[12] and value[16]:
                   VOs.append({
                      "Customer": value[0],
-                     "Name": value[9],
+                     "Name": value[10],
                      "CPU/h": 0,
-                     "Approval": value[8],
-                     "SLA_start": value[6],
-                     "SLA_end": value[7],
+                     "Approval": value[9],
+                     "SLA_start": value[7],
+                     "SLA_end": value[8],
                      "Providers": "N/A",
                      "Active": "Y",
                      "Type": "egi, cloud"
